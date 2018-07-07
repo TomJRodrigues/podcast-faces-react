@@ -1,28 +1,75 @@
-.App {
-  text-align: center;
+html{
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+body{
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+img{
+  object-fit:cover;
+  display:block;
+  height:240px;
+  width:100%;
 }
 
-.App-title {
-  font-size: 1.5em;
+img:hover{
+  opacity:0.8;
 }
 
-.App-intro {
-  font-size: large;
+h1, h2, h3, h4, h5, h6{
+  text-align:center;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+footer{
+  margin-top:40px;
+}
+
+.alphabet{
+  margin:0 auto 20px;
+}
+
+.alphabet ul li{
+  float:left;
+  margin:0 4px;
+  padding:2px;
+  list-style:none;
+}
+
+.sortAlphaButton{
+  color:#0000EE;
+}
+
+.sortAlphaButton:hover{
+  text-decoration:underline;
+  cursor:pointer;
+}
+
+.featured{
+  border-radius:8px;
+}
+
+.sort{
+  clear:both;
+  width:670px;
+  margin:0 auto;
+  padding:20px 0;
+}
+
+.button{
+  background-color:#007bff;
+  border-radius:8px;
+  text-align:center;
+  padding:8px 20px;
+  width:200px;
+  margin:10px;
+  display:inline-block;
+  color:white;
+}
+
+.button:hover{
+opacity:0.8;
+}
+
+.button p{
+  font-size:20px;
+  margin:0px;
 }
