@@ -68,6 +68,9 @@ class App extends Component {
     super();
 
     //function binding
+    this.showByName = this.showByName.bind(this);
+    this.showByShow = this.showByShow.bind(this);
+    this.showHome = this.showHome.bind(this);
 
     this.state = {
       resources: [
@@ -374,16 +377,35 @@ class App extends Component {
     }
   }
 
+  showByName(host) {
+    console.log("helloName");
+  }
+
+  showByShow(show) {
+    console.log("helloShow");
+  }
+
+  showHome() {
+    console.log("helloHome");
+  }
+
   render() {
     return (
       <div className="container container-small">
         <Header />
-        <SortButtons />
+        <SortButtons 
+          showByName = {this.showByName}
+          showByShow = {this.showByShow}
+          showHome = {this.showHome}
+        />
         {
           this.state.resources.map((resource, index) => {
             return (
               <FaceCard
                 index={index}
+                showByName={this.showByName}
+                showByShow={this.showByShow}
+                showHome={this.showHome}
                 items={resource}
               />
             )
