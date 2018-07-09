@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header.js';
 import SortButtons from './SortButtons.js';
-import FaceCard from './FaceCard.js';
+import DisplayCards from './DisplayCards.js';
 
 // face images
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
@@ -18,6 +18,7 @@ import BrianHolt from './img/brian-holt-front-end-happy-hour.jpg';
 import DerrickShowers from './img/derrick-showers-front-end-happy-hour.jpg';
 import JemYoung from './img/jem-young-front-end-happy-hour.jpg';
 import MarsJulian from './img/mars-jullian-front-end-happy-hour.jpg';
+import RyanAnklem from './img/ryan-anklem-front-end-happy-hour.jpg'
 import RyanBurgess from './img/ryan-burgess-front-end-happy-hour.jpg';
 import SarahFederman from './img/sarah-federman-front-end-happy-hour.jpg';
 import StacyLondon from './img/stacy-london-front-end-happy-hour.jpg';
@@ -73,6 +74,9 @@ class App extends Component {
     this.showHome = this.showHome.bind(this);
 
     this.state = {
+      showByName: true,
+      showByShow: false,
+      showHome: false,
       resources: [
         {
           show: "Planet Money",
@@ -81,27 +85,27 @@ class App extends Component {
             {
               firstName: "Ailsa",
               lastName: "Chang",
-              personurl: "ailsa-chang-planet-money.jpg"
+              personurl: AilsaChang
             },
             {
               firstName: "Jacob",
               lastName: "Goldstein",
-              personurl: "jacob-goldstein-planet-money.jpg"
+              personurl: JacobGoldsten
             },
             {
               firstName: "Kenny",
               lastName: "Malone",
-              personurl: "kenny-malone-planet-money.jpeg"
+              personurl: KennyMalone
             },
             {
               firstName: "Noel",
               lastName: "King",
-              personurl: "noel-king-planet-money.jpg"
+              personurl: NoelKing
             },
             {
               firstName: "Robert",
               lastName: "Smith",
-              personurl: "robert-smith-planet-money.jpg"
+              personurl: RobertSmith
             }
           ]
         },
@@ -112,12 +116,12 @@ class App extends Component {
             {
               firstName: "Alex",
               lastName: "Goldman",
-              personurl: "alex-goldman-reply-all.jpg"
+              personurl: AlexGoldman
             },
             {
               firstName: "PJ",
               lastName: "Vogt",
-              personurl: "pj-vogt-reply-all.jpg"
+              personurl: PJVogt
             }
           ]
         },
@@ -128,7 +132,7 @@ class App extends Component {
             {
               firstName: "Ashley",
               lastName: "Saupe",
-              personurl: "ashley-saupe-the-sharp-end.jpg"
+              personurl: AshleySaupe
             }
           ]
         },
@@ -139,47 +143,47 @@ class App extends Component {
             {
               firstName: "Augustus",
               lastName: "Yuan",
-              personurl: "augustus-yuan-front-end-happy-hour.jpg"
+              personurl: AugustusYuan
             },
             {
               firstName: "Brian",
               lastName: "Holt",
-              personurl: "brian-holt-front-end-happy-hour.jpg"
+              personurl: BrianHolt
             },
             {
               firstName: "Derrick",
               lastName: "Showers",
-              personurl: "derrick-showers-front-end-happy-hour.jpg"
+              personurl: DerrickShowers
             },
             {
               firstName: "Jem",
               lastName: "Young",
-              personurl: "jem-young-front-end-happy-hour.jpg"
+              personurl: JemYoung
             },
             {
               firstName: "Mars",
               lastName: "Jullian",
-              personurl: "mars-jullian-front-end-happy-hour.jpg"
+              personurl: MarsJulian
             },
             {
               firstName: "Ryan",
               lastName: "Anklem",
-              personurl: "ryan-anklem-front-end-happy-hour.jpg"
+              personurl: RyanAnklem
             },
             {
               firstName: "Ryan",
               lastName: "Burgess",
-              personurl: "ryan-burgess-front-end-happy-hour.jpg"
+              personurl: RyanBurgess
             },
             {
               firstName: "Sarah",
               lastName: "Federman",
-              personurl: "sarah-federman-front-end-happy-hour.jpg"
+              personurl: SarahFederman
             },
             {
               firstName: "Stacy",
               lastName: "London",
-              personurl: "stacy-london-front-end-happy-hour.jpg"
+              personurl: StacyLondon
             }
           ]
         },
@@ -190,7 +194,7 @@ class App extends Component {
             {
               firstName: "Chris",
               lastName: "Hardwick",
-              personurl: "chris-hardwick-the-nerdist.jpeg"
+              personurl: ChrisHardwick
             }
           ]
         },
@@ -201,17 +205,17 @@ class App extends Component {
             {
               firstName: "Becca",
               lastName: "Cahall",
-              personurl: "becca-cahall-the-dirtbag-diaries.jpeg"
+              personurl: BeccaCahall
             },
             {
               firstName: "Fitz",
               lastName: "Cahall",
-              personurl: "fitz-cahall-the-dirtbag-diaries.png"
+              personurl: FitzCahall
             },
             {
               firstName: "Jen",
               lastName: "Altschul",
-              personurl: "jen-altschul-the-dirtbag-diaries.jpg"
+              personurl: JenAltschul
             }
           ]
         },
@@ -222,7 +226,7 @@ class App extends Component {
             {
               firstName: "Chris",
               lastName: "Kalous",
-              personurl: "chris-kalous-the-enormocast.jpeg"
+              personurl: ChrisKalous
             }
           ]
         },
@@ -233,12 +237,12 @@ class App extends Component {
             {
               firstName: "Chuck",
               lastName: "Bryant",
-              personurl: "chuck-bryant-stuff-you-should-know.jpg"
+              personurl: ChuckBryant
             },
             {
               firstName: "Josh",
               lastName: "Clark",
-              personurl: "josh-clark-stuff-you-should-know.jpg"
+              personurl: JoshClark
             }
           ]
         },
@@ -249,7 +253,7 @@ class App extends Component {
             {
               firstName: "Guy",
               lastName: "Raz",
-              personurl: "guy-raz-ted-radio-hour.jpg"
+              personurl: GuyRaz
             }
           ]
         },
@@ -260,7 +264,7 @@ class App extends Component {
             {
               firstName: "Hrishkesh",
               lastName: "Hirway",
-              personurl: "hrishkesh-hirway-song-exploder.jpeg"
+              personurl: HrishkeshHirway
             }
           ]
         },
@@ -271,7 +275,7 @@ class App extends Component {
             {
               firstName: "Ira",
               lastName: "Glass",
-              personurl: "ira-glass-this-american-life.jpg"
+              personurl: IraGlass
             }
           ]
         },
@@ -282,12 +286,12 @@ class App extends Component {
             {
               firstName: "Jad",
               lastName: "Abumrad",
-              personurl: "jad-abumrad-radiolab.jpg"
+              personurl: JadAbumrad
             },
             {
               firstName: "Robert",
               lastName: "Krulwich",
-              personurl: "robert-krulwich-radiolab.jpg"
+              personurl: RobertKrulwich
             }
           ]
         },
@@ -298,12 +302,12 @@ class App extends Component {
             {
               firstName: "Jessica",
               lastName: "Williams",
-              personurl: "jessica-williams-2-dope-queens.jpg"
+              personurl: JessicaWilliams
             },
             {
               firstName: "Phoebe",
               lastName: "Robinson",
-              personurl: "phoebe-robinson-2-dope-queens.jpg"
+              personurl: PhoebeRobinson
             }
           ]
         },
@@ -314,7 +318,7 @@ class App extends Component {
             {
               firstName: "Joe",
               lastName: "Rogan",
-              personurl: "joe-rogan-joe-rogan-experience.jpeg"
+              personurl: JoeRogan
             }
           ]
         },
@@ -325,7 +329,7 @@ class App extends Component {
             {
               firstName: "Roman",
               lastName: "Mars",
-              personurl: "roman-mars-99-percent-invisible.jpeg"
+              personurl: RomanMars
             }
           ]
         },
@@ -336,7 +340,7 @@ class App extends Component {
             {
               firstName: "Sarah",
               lastName: "Koenig",
-              personurl: "sarah-koenig-serial.jpg"
+              personurl: SarahKoenig
             }
           ]
         },
@@ -347,7 +351,7 @@ class App extends Component {
             {
               firstName: "Stacey",
               lastName: "Vanek-Smith",
-              personurl: "stacey-vanek-smith-the-indicator.jpg"
+              personurl: StaceyVanekSmith
             }
           ]
         },
@@ -358,7 +362,7 @@ class App extends Component {
             {
               firstName: "Stephen J",
               lastName: "Dubner",
-              personurl: "stephen-j-dubner-freakanomics.jpg"
+              personurl: StephenJDubner
             }
           ]
         },
@@ -369,7 +373,7 @@ class App extends Component {
             {
               firstName: "Wendy",
               lastName: "Zukerman",
-              personurl: "wendy-zukerman-science-vs.jpg"
+              personurl: WendyZukerman
             }
           ]
         }
@@ -378,15 +382,27 @@ class App extends Component {
   }
 
   showByName(host) {
-    console.log("helloName");
+    const tempState = this.state;
+    tempState.showByName = true;
+    tempState.showByShow = false;
+    tempState.showHome = false;
+    this.setState(tempState);
   }
 
   showByShow(show) {
-    console.log("helloShow");
+    const tempState = this.state;
+    tempState.showByName = false;
+    tempState.showByShow = true;
+    tempState.showHome = false;
+    this.setState(tempState);
   }
 
   showHome() {
-    console.log("helloHome");
+    const tempState = this.state;
+    tempState.showByName = false;
+    tempState.showByShow = false;
+    tempState.showHome = true;
+    this.setState(tempState);
   }
 
   render() {
@@ -398,19 +414,22 @@ class App extends Component {
           showByShow = {this.showByShow}
           showHome = {this.showHome}
         />
-        {
-          this.state.resources.map((resource, index) => {
-            return (
-              <FaceCard
-                index={index}
-                showByName={this.showByName}
-                showByShow={this.showByShow}
-                showHome={this.showHome}
-                items={resource}
-              />
-            )
-          })
-        }
+        <div className="row">
+          {
+            this.state.resources.map((show, index) => {
+              return(
+                  <DisplayCards
+                    index={index}
+                    isShowByName={this.state.showByName}
+                    isShowByShow={this.state.showByShow}
+                    isShowHome={this.state.showHome}
+                    show={show}
+                  />
+                
+              )
+            })
+          }
+        </div>
       </div>
     );
   }

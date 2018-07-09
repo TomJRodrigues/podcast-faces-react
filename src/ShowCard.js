@@ -5,6 +5,7 @@ export default class ShowCard extends Component {
 		super(props)
 
 		// function binding
+
 	}
 
 	// event handlers
@@ -12,9 +13,8 @@ export default class ShowCard extends Component {
 	render() {
 		return(
 			<div className="col-md-3">
-				<img src={this.props.show.hosts[0].personurl}></img>
-				<h5>{this.props.show.hosts[0].firstName} {this.props.show.hosts[0].lastName}</h5>
-				<h5>{this.props.show.hosts[0].show}</h5>
+				<img src={this.props.items.showurl}></img>
+				<h5>{this.props.items.show}</h5>
 			</div>
 		)
 	}
