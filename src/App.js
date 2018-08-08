@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './Header.js';
 import SortButtons from './SortButtons.js';
-import DisplayCards from './DisplayCards.js';
+import Content from './Content.js';
 
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
 import JacobGoldsten from './img/jacob-goldstein-planet-money.jpg';
@@ -424,7 +424,7 @@ class App extends Component {
             } );
           }
 
-          if (this.state.showByName === true) {  // sorts by host name alphabetically
+          if ((this.state.showByName === true) && (this.state.hosts === undefined || this.state.hosts.length === 0)) {  // sorts by host name alphabetically, checks to make sure we don't populate array more than once
             const tempState = this.state;
             tempState.resources.map((resource, index) => {
               resource.hosts.map((host, index) => {
@@ -450,27 +450,16 @@ class App extends Component {
       <div className="container container-small">
         <Header />
         <SortButtons 
-          showByName = {this.showByName}
-          showByShow = {this.showByShow}
-          showHome = {this.showHome}
+          showByName={this.showByName}
+          showByShow={this.showByShow}
+          showHome={this.showHome}
         />
-        <div className="row">
-          {
-            this.state.resources.map((host, index) => {
-              return(
-                  <DisplayCards
-                    index={index}
-                    isShowByName={this.state.showByName}
-                    isShowByShow={this.state.showByShow}
-                    isShowHome={this.state.showHome}
-                    hosts={host}
-                    state={this.state}
-                  />
-                
-              )
-            })
-          }
-        </div>
+        <Content
+          state={this.state}
+          showByName={this.showByName}
+          showByShow={this.showByShow}
+          showHome={this.showHome}
+        />
       </div>
     );
   }

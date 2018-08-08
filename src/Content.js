@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import FaceCard from './FaceCard.js';
+import DisplayCards from './DisplayCards.js';
 
-export default class DisplayCards extends Component {
+export default class Content extends Component {
 	constructor(props) {
 		super(props)
 
@@ -12,19 +13,20 @@ export default class DisplayCards extends Component {
 	// event handlers
 
 	render() {
-		if (this.props.isShowByShow === true) {
+    if (this.props.state.showByShow === true) {
+      console.log("show by show true");
       return(
-        <div className="sortByShow"> 
-          { 
-            this.props.hosts.hosts.map((host, index) => {
-              return (
-                <FaceCard
+        <div className="row">
+          {
+            this.props.state.resources.map((host, index) => {
+            return(
+                <DisplayCards
                   index={index}
-                  host={host}
-                  firstName={host.firstName}
-                  lastName={host.lastName}
-                  personurl={host.personurl}
-                  show={this.props.hosts.show}
+                  isShowByName={this.props.state.showByName}
+                  isShowByShow={this.props.state.showByShow}
+                  isShowHome={this.props.state.showHome}
+                  hosts={host}
+                  state={this.props.state}
                 />
               )
             })
@@ -32,7 +34,7 @@ export default class DisplayCards extends Component {
         </div>
       )
     }
-    if (this.props.isShowByName === true) {
+    if (this.props.state.showByName === true) { 
       return(
         <div className="sortByName">
         {
@@ -52,7 +54,11 @@ export default class DisplayCards extends Component {
         )
     }
     else {
-    	return(<p>second option</p>)
+      console.log("still else");
+      return(<p>second option</p>)
     }
 	}
 }
+
+
+
