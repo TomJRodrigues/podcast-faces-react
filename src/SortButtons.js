@@ -30,9 +30,8 @@ export default class Header extends Component {
 	render() {
 		return(
 			<div className="sortButtons">
-				<button type="button" className="btn btn-primary btn-lg" onClick={this.handleHome}>Home</button>
-				<button type="button" className="btn btn-primary btn-lg" onClick={this.handleName}>By Name</button>
 				<button type="button" className="btn btn-primary btn-lg" onClick={this.handleShow}>By Show</button>
+				<button type="button" className="btn btn-primary btn-lg" onClick={this.handleName}>By Name</button>
 			</div>
 		)
 	}

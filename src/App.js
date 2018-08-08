@@ -466,3 +466,5 @@ class App extends Component {
 }
 
 export default App;
+
+//TODO: Modal pop up with bigger picture, click on show logo and see just the hosts.

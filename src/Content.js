@@ -54,8 +54,7 @@ export default class Content extends Component {
         )
     }
     else {
-      console.log("still else");
-      return(<p>second option</p>)
+      throw "Please select an option";
     }
 	}
 }
