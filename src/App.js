@@ -4,7 +4,6 @@ import Header from './Header.js';
 import SortButtons from './SortButtons.js';
 import DisplayCards from './DisplayCards.js';
 
-// face images
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
 import JacobGoldsten from './img/jacob-goldstein-planet-money.jpg';
 import KennyMalone from './img/kenny-malone-planet-money.jpeg';
@@ -416,14 +415,14 @@ class App extends Component {
         />
         <div className="row">
           {
-            this.state.resources.map((show, index) => {
+            this.state.resources.map((host, index) => {
               return(
                   <DisplayCards
                     index={index}
                     isShowByName={this.state.showByName}
                     isShowByShow={this.state.showByShow}
                     isShowHome={this.state.showHome}
-                    show={show}
+                    hosts={host}
                   />
                 
               )

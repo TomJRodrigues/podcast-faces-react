@@ -12,11 +12,11 @@ export default class ShowCard extends Component {
 	render() {
 		return(
 			<div className="col-md-3">
-				<img src={this.props.show.hosts[0].personurl}></img>
-				<h5>{this.props.show.hosts[0].firstName} {this.props.show.hosts[0].lastName}</h5>
-				<h5>{this.props.show.hosts[0].show}</h5>
+				<img src={this.props.personurl}></img>
+				<h5>{this.props.firstName} {this.props.lastName}</h5>
 			</div>
 		)
 	}
 
 }
+
