@@ -73,8 +73,8 @@ class App extends Component {
     this.showHome = this.showHome.bind(this);
 
     this.state = {
-      showByName: true,
-      showByShow: false,
+      showByName: false,
+      showByShow: true,
       showHome: false,
       resources: [
         {
@@ -405,6 +405,32 @@ class App extends Component {
   }
 
   render() {
+
+            // sorting state so that results are alphabetical
+            if (this.state.showByShow === true) {  // sorts by show name alphabetically
+            const tempState = this.state;
+            tempState.resources.sort(function(a, b) {
+              var nameA = a.show.toUpperCase(); // ignore upper and lowercase
+              var nameB = b.show.toUpperCase(); // ignore upper and lowercase
+              if (nameA < nameB) {
+                return -1;
+              }
+              if (nameA > nameB) {
+                return 1;
+              }
+              // names must be equal
+              return 0;
+            } );
+            console.log(tempState);
+          }
+          if (this.state.showByName === true) {  // sorts by host name alphabetically
+            const tempState = this.state;
+            var hostArray = [];
+            hostArray.push(tempState.resources.map());
+            console.log(hostArray);
+          }
+          else {}  // no sorting
+
     return (
       <div className="container container-small">
         <Header />

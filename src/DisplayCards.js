@@ -12,10 +12,10 @@ export default class DisplayCards extends Component {
 	// event handlers
 
 	render() {
-		if (this.props.isShowByName === true) {
+		if (this.props.isShowByShow === true) {
       return(
         <div className="faceCardHolder"> 
-          {  
+          { 
             this.props.hosts.hosts.map((host, index) => {
               return (
                 <FaceCard
@@ -24,11 +24,12 @@ export default class DisplayCards extends Component {
                 firstName={host.firstName}
                 lastName={host.lastName}
                 personurl={host.personurl}
+                show={this.props.hosts.show}
                 />
               )
             })
           }
-          </div>
+        </div>
       )
     }
     else {

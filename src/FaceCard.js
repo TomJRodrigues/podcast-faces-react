@@ -14,6 +14,7 @@ export default class ShowCard extends Component {
 			<div className="col-md-3">
 				<img src={this.props.personurl}></img>
 				<h5>{this.props.firstName} {this.props.lastName}</h5>
+				<h5>{this.props.show}</h5>
 			</div>
 		)
 	}
