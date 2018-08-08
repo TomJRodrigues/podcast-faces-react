@@ -376,7 +376,8 @@ class App extends Component {
             }
           ]
         }
-      ]
+      ],
+      hosts: []
     }
   }
 
@@ -421,13 +422,27 @@ class App extends Component {
               // names must be equal
               return 0;
             } );
-            console.log(tempState);
           }
+
           if (this.state.showByName === true) {  // sorts by host name alphabetically
             const tempState = this.state;
-            var hostArray = [];
-            hostArray.push(tempState.resources.map());
-            console.log(hostArray);
+            tempState.resources.map((resource, index) => {
+              resource.hosts.map((host, index) => {
+                this.state.hosts.push(host);
+                this.state.hosts.sort(function(a, b) {
+                  var nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
+                  var nameB = b.firstName.toUpperCase(); // ignore upper and lowercase
+                  if (nameA < nameB) {
+                    return -1;
+                  }
+                  if (nameA > nameB) {
+                    return 1;
+                  }
+                  // names must be equal
+                  return 0;
+                } );
+              })
+            })
           }
           else {}  // no sorting
 
@@ -449,6 +464,7 @@ class App extends Component {
                     isShowByShow={this.state.showByShow}
                     isShowHome={this.state.showHome}
                     hosts={host}
+                    state={this.state}
                   />
                 
               )
