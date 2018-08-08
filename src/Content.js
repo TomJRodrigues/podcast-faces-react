@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FaceCard from './FaceCard.js';
-import DisplayCards from './DisplayCards.js';
+import ShowCard from './ShowCard.js';
 
 export default class Content extends Component {
 	constructor(props) {
@@ -18,14 +18,12 @@ export default class Content extends Component {
       return(
         <div className="row">
           {
-            this.props.state.resources.map((host, index) => {
+            this.props.state.resources.map((show, index) => {
             return(
-                <DisplayCards
+                <ShowCard
                   index={index}
-                  isShowByName={this.props.state.showByName}
-                  isShowByShow={this.props.state.showByShow}
-                  isShowHome={this.props.state.showHome}
-                  hosts={host}
+                  show={show.show}
+                  showurl={show.showurl}
                   state={this.props.state}
                 />
               )

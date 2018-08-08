@@ -70,7 +70,6 @@ class App extends Component {
     //function binding
     this.showByName = this.showByName.bind(this);
     this.showByShow = this.showByShow.bind(this);
-    this.showHome = this.showHome.bind(this);
 
     this.state = {
       showByName: false,
@@ -397,14 +396,6 @@ class App extends Component {
     this.setState(tempState);
   }
 
-  showHome() {
-    const tempState = this.state;
-    tempState.showByName = false;
-    tempState.showByShow = false;
-    tempState.showHome = true;
-    this.setState(tempState);
-  }
-
   render() {
 
             // sorting state so that results are alphabetical
@@ -452,13 +443,11 @@ class App extends Component {
         <SortButtons 
           showByName={this.showByName}
           showByShow={this.showByShow}
-          showHome={this.showHome}
         />
         <Content
           state={this.state}
           showByName={this.showByName}
           showByShow={this.showByShow}
-          showHome={this.showHome}
         />
       </div>
     );

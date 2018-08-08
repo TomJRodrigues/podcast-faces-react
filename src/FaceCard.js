@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class ShowCard extends Component {
+export default class FaceCard extends Component {
 	constructor(props) {
 		super(props)
 
