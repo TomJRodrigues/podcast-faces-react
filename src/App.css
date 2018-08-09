@@ -1,7 +1,10 @@
 html{
 }
 
-body{
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
 img{
@@ -23,35 +26,17 @@ footer{
   margin-top:40px;
 }
 
-.alphabet{
-  margin:0 auto 20px;
+.container-small, .container-large {
+    max-width: 100%;
 }
 
-.alphabet ul li{
-  float:left;
-  margin:0 4px;
-  padding:2px;
-  list-style:none;
+.sortButtons{
+    margin:20px auto;
+    width:235px;
 }
 
-.sortAlphaButton{
-  color:#0000EE;
-}
-
-.sortAlphaButton:hover{
-  text-decoration:underline;
-  cursor:pointer;
-}
-
-.featured{
-  border-radius:8px;
-}
-
-.sort{
-  clear:both;
-  width:670px;
-  margin:0 auto;
-  padding:20px 0;
+.btn {
+    margin: 0 5px;
 }
 
 .button{
@@ -72,4 +57,29 @@ opacity:0.8;
 .button p{
   font-size:20px;
   margin:0px;
+}
+
+@media (min-width: 768px) {
+    .container-small {
+        width: 400px;
+    }
+    .container-large {
+        width: 970px;
+    } 
+} 
+@media (min-width: 992px) {
+    .container-small {
+        width: 640px;
+    }
+    .container-large {
+        width: 1170px;
+    } 
+} 
+@media (min-width: 1200px) {
+    .container-small {
+        width: 920px;
+    }
+    .container-large {
+        width: 1500px;
+    } 
 }
