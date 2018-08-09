@@ -7,12 +7,12 @@ export default class Content extends Component {
 		super(props)
 
 		// function binding
-
 	}
 
 	// event handlers
 
 	render() {
+    // rendering when user clicks to sort by Show
     if (this.props.state.showByShow === true) {
       return(
         <div className="row">
@@ -32,6 +32,7 @@ export default class Content extends Component {
         </div>
       )
     }
+    // rendering for when user clicks to sort by Name instead
     if (this.props.state.showByName === true) { 
       return(
         <div className="row">
@@ -44,6 +45,7 @@ export default class Content extends Component {
                 firstName={host.firstName}
                 lastName={host.lastName}
                 personurl={host.personurl}
+                show={host.show}
                 globalState={this.props.state}
               />
             )

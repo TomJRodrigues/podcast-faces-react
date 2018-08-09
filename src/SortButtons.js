@@ -5,17 +5,11 @@ export default class Header extends Component {
 		super(props)
 
 		// function binding
-		this.handleHome = this.handleHome.bind(this);
 		this.handleName = this.handleName.bind(this);
 		this.handleShow = this.handleShow.bind(this);
 	}
 
 	// event handlers
-
-	handleHome(event) {         // packages event input into object notation, calls bound function from app.js to go home
-    event.preventDefault();
-    this.props.showHome();
-  }
 
   handleName(event) {         // packages event input into object notation, calls bound function from app.js to filter by name
     event.preventDefault();

@@ -8,6 +8,7 @@ export default class ShowCard extends Component {
 		super(props, context);
 
 		// function binding
+    // functions and state taken from react bootstrap modal examples
 		this.handleShow = this.handleShow.bind(this);
 		this.handleClose = this.handleClose.bind(this);
 
@@ -17,21 +18,18 @@ export default class ShowCard extends Component {
 	}
 
 	// event handlers
-
 	handleClose() {
 		this.setState({ show: false });
-		console.log("closed");
 	}
 
 	handleShow() {
 		this.setState({ show: true });
-		console.log("showed");
 	}
 
 	render() {
 		return(
 			<div className="col-md-3">
-				<div className="cardHolder" onClick={this.handleShow}>
+				<div className="showCardHolder" onClick={this.handleShow}>
           <img src={this.props.showurl}></img>
   				<h5>{this.props.show}</h5>
         </div>
@@ -41,7 +39,7 @@ export default class ShowCard extends Component {
           </Modal.Header>
           <Modal.Body>
             <div className="row">
-              {
+              {  // iterates over the host array and requests an image and name for each
                 this.props.resource.hosts.map((host, index) => {
                   return (
                     <ModalFaceCard
@@ -50,6 +48,7 @@ export default class ShowCard extends Component {
                       firstName={host.firstName}
                       lastName={host.lastName}
                       personurl={host.personurl}
+                      show={host.show}
                     />
                   )
                 })

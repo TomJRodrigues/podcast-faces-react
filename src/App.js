@@ -4,6 +4,7 @@ import Header from './Header.js';
 import SortButtons from './SortButtons.js';
 import Content from './Content.js';
 
+// host images
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
 import JacobGoldsten from './img/jacob-goldstein-planet-money.jpg';
 import KennyMalone from './img/kenny-malone-planet-money.jpeg';
@@ -74,7 +75,6 @@ class App extends Component {
     this.state = {
       showByName: false,
       showByShow: true,
-      showHome: false,
       resources: [
         {
           show: "Planet Money",
@@ -83,27 +83,32 @@ class App extends Component {
             {
               firstName: "Ailsa",
               lastName: "Chang",
-              personurl: AilsaChang
+              personurl: AilsaChang,
+              show: "Planet Money"
             },
             {
               firstName: "Jacob",
               lastName: "Goldstein",
-              personurl: JacobGoldsten
+              personurl: JacobGoldsten,
+              show: "Planet Money"
             },
             {
               firstName: "Kenny",
               lastName: "Malone",
-              personurl: KennyMalone
+              personurl: KennyMalone,
+              show: "Planet Money"
             },
             {
               firstName: "Noel",
               lastName: "King",
-              personurl: NoelKing
+              personurl: NoelKing,
+              show: "Planet Money"
             },
             {
               firstName: "Robert",
               lastName: "Smith",
-              personurl: RobertSmith
+              personurl: RobertSmith,
+              show: "Planet Money"
             }
           ]
         },
@@ -114,12 +119,14 @@ class App extends Component {
             {
               firstName: "Alex",
               lastName: "Goldman",
-              personurl: AlexGoldman
+              personurl: AlexGoldman,
+              show: "Reply All"
             },
             {
               firstName: "PJ",
               lastName: "Vogt",
-              personurl: PJVogt
+              personurl: PJVogt,
+              show: "Reply All"
             }
           ]
         },
@@ -130,7 +137,8 @@ class App extends Component {
             {
               firstName: "Ashley",
               lastName: "Saupe",
-              personurl: AshleySaupe
+              personurl: AshleySaupe,
+              show: "The Sharp End"
             }
           ]
         },
@@ -141,47 +149,56 @@ class App extends Component {
             {
               firstName: "Augustus",
               lastName: "Yuan",
-              personurl: AugustusYuan
+              personurl: AugustusYuan,
+              show: "Front End Happy Hour"
             },
             {
               firstName: "Brian",
               lastName: "Holt",
-              personurl: BrianHolt
+              personurl: BrianHolt,
+              show: "Front End Happy Hour"
             },
             {
               firstName: "Derrick",
               lastName: "Showers",
-              personurl: DerrickShowers
+              personurl: DerrickShowers,
+              show: "Front End Happy Hour"
             },
             {
               firstName: "Jem",
               lastName: "Young",
-              personurl: JemYoung
+              personurl: JemYoung,
+              show: "Front End Happy Hour"
             },
             {
               firstName: "Mars",
               lastName: "Jullian",
-              personurl: MarsJulian
+              personurl: MarsJulian,
+              show: "Front End Happy Hour"
             },
             {
               firstName: "Ryan",
               lastName: "Anklem",
-              personurl: RyanAnklem
+              personurl: RyanAnklem,
+              show: "Front End Happy Hour"
             },
             {
               firstName: "Ryan",
               lastName: "Burgess",
-              personurl: RyanBurgess
+              personurl: RyanBurgess,
+              show: "Front End Happy Hour"
             },
             {
               firstName: "Sarah",
               lastName: "Federman",
-              personurl: SarahFederman
+              personurl: SarahFederman,
+              show: "Front End Happy Hour"
             },
             {
               firstName: "Stacy",
               lastName: "London",
-              personurl: StacyLondon
+              personurl: StacyLondon,
+              show: "Front End Happy Hour"
             }
           ]
         },
@@ -192,7 +209,8 @@ class App extends Component {
             {
               firstName: "Chris",
               lastName: "Hardwick",
-              personurl: ChrisHardwick
+              personurl: ChrisHardwick,
+              show: "The Nerdist"
             }
           ]
         },
@@ -203,17 +221,20 @@ class App extends Component {
             {
               firstName: "Becca",
               lastName: "Cahall",
-              personurl: BeccaCahall
+              personurl: BeccaCahall,
+              show: "The Dirtbag Diaries"
             },
             {
               firstName: "Fitz",
               lastName: "Cahall",
-              personurl: FitzCahall
+              personurl: FitzCahall,
+              show: "The Dirtbag Diaries"
             },
             {
               firstName: "Jen",
               lastName: "Altschul",
-              personurl: JenAltschul
+              personurl: JenAltschul,
+              show: "The Dirtbag Diaries"
             }
           ]
         },
@@ -224,7 +245,8 @@ class App extends Component {
             {
               firstName: "Chris",
               lastName: "Kalous",
-              personurl: ChrisKalous
+              personurl: ChrisKalous,
+              show: "The Enormocast"
             }
           ]
         },
@@ -235,12 +257,14 @@ class App extends Component {
             {
               firstName: "Chuck",
               lastName: "Bryant",
-              personurl: ChuckBryant
+              personurl: ChuckBryant,
+              show: "Stuff You Should Know"
             },
             {
               firstName: "Josh",
               lastName: "Clark",
-              personurl: JoshClark
+              personurl: JoshClark,
+              show: "Stuff You Should Know"
             }
           ]
         },
@@ -251,7 +275,8 @@ class App extends Component {
             {
               firstName: "Guy",
               lastName: "Raz",
-              personurl: GuyRaz
+              personurl: GuyRaz,
+              show: "TED Radio Hour"
             }
           ]
         },
@@ -262,7 +287,8 @@ class App extends Component {
             {
               firstName: "Hrishkesh",
               lastName: "Hirway",
-              personurl: HrishkeshHirway
+              personurl: HrishkeshHirway,
+              show: "Song Exploder"
             }
           ]
         },
@@ -273,7 +299,8 @@ class App extends Component {
             {
               firstName: "Ira",
               lastName: "Glass",
-              personurl: IraGlass
+              personurl: IraGlass,
+              show: "This American Life"
             }
           ]
         },
@@ -284,12 +311,14 @@ class App extends Component {
             {
               firstName: "Jad",
               lastName: "Abumrad",
-              personurl: JadAbumrad
+              personurl: JadAbumrad,
+              show: "Radiolab"
             },
             {
               firstName: "Robert",
               lastName: "Krulwich",
-              personurl: RobertKrulwich
+              personurl: RobertKrulwich,
+              show: "Radiolab"
             }
           ]
         },
@@ -300,12 +329,14 @@ class App extends Component {
             {
               firstName: "Jessica",
               lastName: "Williams",
-              personurl: JessicaWilliams
+              personurl: JessicaWilliams,
+              show: "2 Dope Queens"
             },
             {
               firstName: "Phoebe",
               lastName: "Robinson",
-              personurl: PhoebeRobinson
+              personurl: PhoebeRobinson,
+              show: "2 Dope Queens"
             }
           ]
         },
@@ -316,7 +347,8 @@ class App extends Component {
             {
               firstName: "Joe",
               lastName: "Rogan",
-              personurl: JoeRogan
+              personurl: JoeRogan,
+              show: "Joe Rogan Experience"
             }
           ]
         },
@@ -327,7 +359,8 @@ class App extends Component {
             {
               firstName: "Roman",
               lastName: "Mars",
-              personurl: RomanMars
+              personurl: RomanMars,
+              show: "99 Percent Invisible"
             }
           ]
         },
@@ -338,7 +371,8 @@ class App extends Component {
             {
               firstName: "Sarah",
               lastName: "Koenig",
-              personurl: SarahKoenig
+              personurl: SarahKoenig,
+              show: "Serial"
             }
           ]
         },
@@ -349,7 +383,8 @@ class App extends Component {
             {
               firstName: "Stacey",
               lastName: "Vanek-Smith",
-              personurl: StaceyVanekSmith
+              personurl: StaceyVanekSmith,
+              show: "The Indicator"
             }
           ]
         },
@@ -360,7 +395,8 @@ class App extends Component {
             {
               firstName: "Stephen J",
               lastName: "Dubner",
-              personurl: StephenJDubner
+              personurl: StephenJDubner,
+              show: "Freakanomics"
             }
           ]
         },
@@ -371,7 +407,8 @@ class App extends Component {
             {
               firstName: "Wendy",
               lastName: "Zukerman",
-              personurl: WendyZukerman
+              personurl: WendyZukerman,
+              show: "Science Vs"
             }
           ]
         }
@@ -384,7 +421,6 @@ class App extends Component {
     const tempState = this.state;
     tempState.showByName = true;
     tempState.showByShow = false;
-    tempState.showHome = false;
     this.setState(tempState);
   }
 
@@ -392,12 +428,10 @@ class App extends Component {
     const tempState = this.state;
     tempState.showByName = false;
     tempState.showByShow = true;
-    tempState.showHome = false;
     this.setState(tempState);
   }
 
   render() {
-
             // sorting state so that results are alphabetical
             if (this.state.showByShow === true) {  // sorts by show name alphabetically
             const tempState = this.state;
@@ -456,4 +490,4 @@ class App extends Component {
 
 export default App;
 
-//TODO: Modal pop up with bigger picture, click on show logo and see just the hosts.
+//TODO: comment code
