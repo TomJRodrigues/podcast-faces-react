@@ -14,7 +14,6 @@ export default class Content extends Component {
 
 	render() {
     if (this.props.state.showByShow === true) {
-      console.log("show by show true");
       return(
         <div className="row">
           {
@@ -24,7 +23,8 @@ export default class Content extends Component {
                   index={index}
                   show={show.show}
                   showurl={show.showurl}
-                  state={this.props.state}
+                  resource={show}
+                  globalState={this.props.state}
                 />
               )
             })
@@ -34,7 +34,7 @@ export default class Content extends Component {
     }
     if (this.props.state.showByName === true) { 
       return(
-        <div className="sortByName">
+        <div className="row">
         {
           this.props.state.hosts.map((host, index) => {
             return (
@@ -44,6 +44,7 @@ export default class Content extends Component {
                 firstName={host.firstName}
                 lastName={host.lastName}
                 personurl={host.personurl}
+                globalState={this.props.state}
               />
             )
           })
