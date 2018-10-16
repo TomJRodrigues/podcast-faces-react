@@ -10,10 +10,9 @@ export default class Header extends Component {
 	render() {
 		let title = "Podcast Faces"
 		return(
-			<div>
+			<header>
 				<h1>{title}</h1>
-				<h6>By Tom Rodrigues: <a href="https://github.com/TomJRodrigues">GitHub</a>, <a href="mailto:tomjrodrigues@gmail.com">tomjrodrigues@gmail.com</a></h6>
-			</div>
+			</header>
 		)
 	}
 
