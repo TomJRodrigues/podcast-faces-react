@@ -37,7 +37,7 @@ export default class Content extends Component {
       return(
         <div className="row">
         {
-          this.props.state.hosts.map((host, index) => {
+          this.props.state.typeAheadOptions.map((host, index) => {
             return (
               <FaceCard
                 index={index}

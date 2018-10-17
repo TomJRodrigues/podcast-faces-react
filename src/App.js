@@ -4,9 +4,7 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import SortButtons from './SortButtons.js';
 import Content from './Content.js';
-import {Typeahead} from 'react-bootstrap-typeahead';
-import 'react-bootstrap-typeahead/css/Typeahead.css';
-import 'react-bootstrap-typeahead/css/Typeahead-bs4.css';
+import TypeAheadContainer from './TypeAheadContainer.js';
 
 // host images
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
@@ -417,8 +415,7 @@ class App extends Component {
           ]
         }
       ],
-      hosts: [],
-      shows: []
+      typeAheadOptions: []
     }
   }
 
@@ -439,27 +436,33 @@ class App extends Component {
   render() {
             // sorting state so that results are alphabetical
             if (this.state.showByShow === true) {  // sorts by show name alphabetically
-            const tempState = this.state;
-            tempState.resources.sort(function(a, b) {
-              var nameA = a.show.toUpperCase(); // ignore upper and lowercase
-              var nameB = b.show.toUpperCase(); // ignore upper and lowercase
-              if (nameA < nameB) {
-                return -1;
-              }
-              if (nameA > nameB) {
-                return 1;
-              }
-              // names must be equal
-              return 0;
-            } );
-          }
+              const tempState = this.state;
+              tempState.resources.sort(function(a, b) {
+                var nameA = a.show.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.show.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+                // names must be equal
+                return 0;
+              } );
+              this.state.typeAheadOptions.length = 0;  // resets typeAhead options
+              tempState.resources.map((resource, index) => {
+                var resourceObject = Object.assign({}, resource)
+                this.state.typeAheadOptions.push(resourceObject);
+              })
+            }
 
-          if ((this.state.showByName === true) && (this.state.hosts === undefined || this.state.hosts.length === 0)) {  // sorts by host name alphabetically, checks to make sure we don't populate array more than once
+          if ((this.state.showByName === true)) {  // sorts by host name alphabetically
+            this.state.typeAheadOptions.length = 0; // resets typeAhead options
             const tempState = this.state;
             tempState.resources.map((resource, index) => {
               resource.hosts.map((host, index) => {
-                this.state.hosts.push(host);
-                this.state.hosts.sort(function(a, b) {
+                this.state.typeAheadOptions.push(host);
+                this.state.typeAheadOptions.sort(function(a, b) {
                   var nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
                   var nameB = b.firstName.toUpperCase(); // ignore upper and lowercase
                   if (nameA < nameB) {
@@ -471,7 +474,6 @@ class App extends Component {
                   // names must be equal
                   return 0;
                 } );
-                console.log(this.state.hosts);
               })
             })
           }
@@ -480,14 +482,14 @@ class App extends Component {
     return (
       <div className="container container-small">
         <Header />
-        <SortButtons 
+        <SortButtons
           showByName={this.showByName}
           showByShow={this.showByShow}
         />
-        <Typeahead
-          labelKey={(option) => `${option.firstName} ${option.lastName}`}
-          options={this.state.hosts}
+        <TypeAheadContainer
+          state={this.state}
         />
+        
         <Content
           state={this.state}
           showByName={this.showByName}
@@ -500,5 +502,3 @@ class App extends Component {
 }
 
 export default App;
-
-//TODO: comment code
