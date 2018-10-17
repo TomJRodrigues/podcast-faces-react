@@ -4,6 +4,9 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import SortButtons from './SortButtons.js';
 import Content from './Content.js';
+import {Typeahead} from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
+import 'react-bootstrap-typeahead/css/Typeahead-bs4.css';
 
 // host images
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
@@ -414,7 +417,8 @@ class App extends Component {
           ]
         }
       ],
-      hosts: []
+      hosts: [],
+      shows: []
     }
   }
 
@@ -467,6 +471,7 @@ class App extends Component {
                   // names must be equal
                   return 0;
                 } );
+                console.log(this.state.hosts);
               })
             })
           }
@@ -478,6 +483,10 @@ class App extends Component {
         <SortButtons 
           showByName={this.showByName}
           showByShow={this.showByShow}
+        />
+        <Typeahead
+          labelKey={(option) => `${option.firstName} ${option.lastName}`}
+          options={this.state.hosts}
         />
         <Content
           state={this.state}
