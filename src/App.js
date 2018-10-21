@@ -73,6 +73,7 @@ class App extends Component {
     //function binding
     this.showByName = this.showByName.bind(this);
     this.showByShow = this.showByShow.bind(this);
+    this.handleChangeHelper = this.handleChangeHelper.bind(this);
 
     this.state = {
       showByName: false,
@@ -415,7 +416,8 @@ class App extends Component {
           ]
         }
       ],
-      typeAheadOptions: []
+      typeAheadOptions: [],
+      selected: []
     }
   }
 
@@ -423,6 +425,7 @@ class App extends Component {
     const tempState = this.state;
     tempState.showByName = true;
     tempState.showByShow = false;
+    tempState.selected = [];
     this.setState(tempState);
   }
 
@@ -430,6 +433,13 @@ class App extends Component {
     const tempState = this.state;
     tempState.showByName = false;
     tempState.showByShow = true;
+    tempState.selected = [];
+    this.setState(tempState);
+  }
+
+  handleChangeHelper(selected) {
+    const tempState = this.state;
+    tempState.selected = selected;
     this.setState(tempState);
   }
 
@@ -488,6 +498,8 @@ class App extends Component {
         />
         <TypeAheadContainer
           state={this.state}
+          handleChangeHelper={this.handleChangeHelper}
+          clearSelected={this.clearSelected}
         />
         
         <Content
@@ -502,3 +514,11 @@ class App extends Component {
 }
 
 export default App;
+
+
+// TODO
+/* Typeahead should handle the input as "Selected" and set it to state,
+then once a suer has sleected a single item, display it in the content box, centered */
+/* Change facecards to flexbox? */
+/* Build up db of shows and hosts */
+

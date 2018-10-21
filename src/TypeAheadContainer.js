@@ -7,24 +7,42 @@ export default class TypeAheadContainer extends Component {
 	constructor(props) {
 		super(props)
 
+		//function binding
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	// event handlers
+	handleChange(selected) {
+		console.log(selected);
+		this.props.handleChangeHelper(selected);
+	}
 
 	render() {
 		if (this.props.state.showByShow === true) {
 			return(
 				<Typeahead
+					onChange={this.handleChange}
 	        labelKey={(option) => `${option.show}`}
 	        options={this.props.state.typeAheadOptions}
+	        placeholder="Enter a show"
+	        highlightOnlyResult={true}
+	        selectHintOnEnter={true}
+	        clearButton
+	        selected={this.props.state.selected}
 	      />
 			)
 		}
 		if (this.props.state.showByName === true) {
 			return(
 				<Typeahead
+					onChange={this.handleChange}
 	        labelKey={(option) => `${option.firstName} ${option.lastName}`}
 	        options={this.props.state.typeAheadOptions}
+	        placeholder="Enter a name"
+	        highlightOnlyResult={true}
+	        selectHintOnEnter={true}
+	        clearButton
+	        selected={this.props.state.selected}
 	      />
 			)
 		}
