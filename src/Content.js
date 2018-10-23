@@ -17,7 +17,7 @@ export default class Content extends Component {
       return(
         <div className="row">
           {
-            this.props.state.resources.map((show, index) => {
+            this.props.state.contentToRender.map((show, index) => {
             return(
                 <ShowCard
                   index={index}
@@ -37,7 +37,7 @@ export default class Content extends Component {
       return(
         <div className="row">
         {
-          this.props.state.typeAheadOptions.map((host, index) => {
+          this.props.state.contentToRender.map((host, index) => {
             return (
               <FaceCard
                 index={index}

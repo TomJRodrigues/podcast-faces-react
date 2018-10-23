@@ -416,6 +416,7 @@ class App extends Component {
           ]
         }
       ],
+      contentToRender: [],
       typeAheadOptions: [],
       selected: []
     }
@@ -439,6 +440,8 @@ class App extends Component {
 
   handleChangeHelper(selected) {
     const tempState = this.state;
+    tempState.contentToRender.length = 0;
+    tempState.contentToRender = selected;
     tempState.selected = selected;
     this.setState(tempState);
   }
@@ -463,6 +466,10 @@ class App extends Component {
               tempState.resources.map((resource, index) => {
                 var resourceObject = Object.assign({}, resource)
                 this.state.typeAheadOptions.push(resourceObject);
+                this.state.contentToRender = this.state.typeAheadOptions;
+                if (this.state.selected.length > 0) {
+                  this.state.contentToRender = this.state.selected;
+                }
               })
             }
 
@@ -486,6 +493,10 @@ class App extends Component {
                 } );
               })
             })
+            this.state.contentToRender = this.state.typeAheadOptions;
+            if (this.state.selected.length > 0) {
+                  this.state.contentToRender = this.state.selected;
+                }
           }
           else {}  // no sorting
 
