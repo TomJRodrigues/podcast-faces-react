@@ -1,9 +1,12 @@
 html{
+  margin-left: calc(100vw - 100%);
+  margin-right:0;
 }
 
 body {
   margin: 0;
   padding: 0;
+  padding-right:0 !important; /* used to prevent modal from adding padding */
   font-family: sans-serif;
 }
 
@@ -63,6 +66,12 @@ opacity:0.8;
 .typeahead-container{
   width:400px;
   margin:10px auto 20px;
+}
+
+.contentBox{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-evenly;
 }
 
 @media (min-width: 768px) {
