@@ -4,6 +4,7 @@ import Header from './Header.js';
 import Footer from './Footer.js';
 import SortButtons from './SortButtons.js';
 import Content from './Content.js';
+import TypeAheadContainer from './TypeAheadContainer.js';
 
 // host images
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
@@ -72,6 +73,7 @@ class App extends Component {
     //function binding
     this.showByName = this.showByName.bind(this);
     this.showByShow = this.showByShow.bind(this);
+    this.handleChangeHelper = this.handleChangeHelper.bind(this);
 
     this.state = {
       showByName: false,
@@ -414,7 +416,9 @@ class App extends Component {
           ]
         }
       ],
-      hosts: []
+      contentToRender: [],
+      typeAheadOptions: [],
+      selected: []
     }
   }
 
@@ -422,6 +426,7 @@ class App extends Component {
     const tempState = this.state;
     tempState.showByName = true;
     tempState.showByShow = false;
+    tempState.selected = [];
     this.setState(tempState);
   }
 
@@ -429,33 +434,52 @@ class App extends Component {
     const tempState = this.state;
     tempState.showByName = false;
     tempState.showByShow = true;
+    tempState.selected = [];
+    this.setState(tempState);
+  }
+
+  handleChangeHelper(selected) {
+    const tempState = this.state;
+    tempState.contentToRender.length = 0;
+    tempState.contentToRender = selected;
+    tempState.selected = selected;
     this.setState(tempState);
   }
 
   render() {
             // sorting state so that results are alphabetical
             if (this.state.showByShow === true) {  // sorts by show name alphabetically
-            const tempState = this.state;
-            tempState.resources.sort(function(a, b) {
-              var nameA = a.show.toUpperCase(); // ignore upper and lowercase
-              var nameB = b.show.toUpperCase(); // ignore upper and lowercase
-              if (nameA < nameB) {
-                return -1;
-              }
-              if (nameA > nameB) {
-                return 1;
-              }
-              // names must be equal
-              return 0;
-            } );
-          }
+              const tempState = this.state;
+              tempState.resources.sort(function(a, b) {
+                var nameA = a.show.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.show.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+                // names must be equal
+                return 0;
+              } );
+              this.state.typeAheadOptions.length = 0;  // resets typeAhead options
+              tempState.resources.map((resource, index) => {
+                var resourceObject = Object.assign({}, resource)
+                this.state.typeAheadOptions.push(resourceObject);
+                this.state.contentToRender = this.state.typeAheadOptions;
+                if (this.state.selected.length > 0) {
+                  this.state.contentToRender = this.state.selected;
+                }
+              })
+            }
 
-          if ((this.state.showByName === true) && (this.state.hosts === undefined || this.state.hosts.length === 0)) {  // sorts by host name alphabetically, checks to make sure we don't populate array more than once
+          if ((this.state.showByName === true)) {  // sorts by host name alphabetically
+            this.state.typeAheadOptions.length = 0; // resets typeAhead options
             const tempState = this.state;
             tempState.resources.map((resource, index) => {
               resource.hosts.map((host, index) => {
-                this.state.hosts.push(host);
-                this.state.hosts.sort(function(a, b) {
+                this.state.typeAheadOptions.push(host);
+                this.state.typeAheadOptions.sort(function(a, b) {
                   var nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
                   var nameB = b.firstName.toUpperCase(); // ignore upper and lowercase
                   if (nameA < nameB) {
@@ -469,16 +493,26 @@ class App extends Component {
                 } );
               })
             })
+            this.state.contentToRender = this.state.typeAheadOptions;
+            if (this.state.selected.length > 0) {
+                  this.state.contentToRender = this.state.selected;
+                }
           }
           else {}  // no sorting
 
     return (
       <div className="container container-small">
         <Header />
-        <SortButtons 
+        <SortButtons
           showByName={this.showByName}
           showByShow={this.showByShow}
         />
+        <TypeAheadContainer
+          state={this.state}
+          handleChangeHelper={this.handleChangeHelper}
+          clearSelected={this.clearSelected}
+        />
+        
         <Content
           state={this.state}
           showByName={this.showByName}
@@ -492,4 +526,10 @@ class App extends Component {
 
 export default App;
 
-//TODO: comment code
+
+// TODO
+/* Typeahead should handle the input as "Selected" and set it to state,
+then once a suer has sleected a single item, display it in the content box, centered */
+/* Change facecards to flexbox? */
+/* Build up db of shows and hosts */
+

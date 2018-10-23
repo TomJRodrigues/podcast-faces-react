@@ -15,9 +15,9 @@ export default class Content extends Component {
     // rendering when user clicks to sort by Show
     if (this.props.state.showByShow === true) {
       return(
-        <div className="row">
+        <div className="contentBox">
           {
-            this.props.state.resources.map((show, index) => {
+            this.props.state.contentToRender.map((show, index) => {
             return(
                 <ShowCard
                   index={index}
@@ -35,9 +35,9 @@ export default class Content extends Component {
     // rendering for when user clicks to sort by Name instead
     if (this.props.state.showByName === true) { 
       return(
-        <div className="row">
+        <div className="contentBox">
         {
-          this.props.state.hosts.map((host, index) => {
+          this.props.state.contentToRender.map((host, index) => {
             return (
               <FaceCard
                 index={index}
