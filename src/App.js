@@ -44,6 +44,65 @@ import SarahKoenig from './img/sarah-koenig-serial.jpg';
 import StaceyVanekSmith from './img/stacey-vanek-smith-the-indicator.jpg';
 import StephenJDubner from './img/stephen-j-dubner-freakanomics.jpg';
 import WendyZukerman from './img/wendy-zukerman-science-vs.jpg';
+import AaronMahnke from 'aaron-mahnke-lore.jpg';
+import AliceLevine from 'alice-levine-my-dad-wrote-a-porno.jpeg';
+import AlixSpiegel from 'alix-spiegel-invisibilia.jpeg';
+import AmberALeeFrost from 'amber-alee-frost-chapo-trap-house.jpeg';
+import BenKissel from 'ben-kissel-the-last-podcast-on-the-left.jpeg';
+import BenShapiro from 'ben-shapiro-the-ben-shapiro-show.jpeg';
+import BrianReed from 'brian-reed-s-town.jpeg';
+import Captain from 'captain-true-crime-garage.jpeg';
+import ConanOBrien from 'conan-obrien-conan-obrien-needs-a-friend.jpeg';
+import CorinneFisher from 'corinne-fisher-guys-we-fucked.jpeg';
+import DanCarlin from 'dan-carlin-dan-carlins-hardcore-history.jpeg';
+import DanPfeiffer from 'dan-pfeiffer-pod-save-america.jpg';
+import DanSavage from 'dan-savage-savage-lovecast.jpeg';
+import DrewAckerman from 'drew-ackerman-sleep-with-me.jpeg';
+import EarlonneWoods from 'earlonne-woods-ear-hustle.jpeg';
+import EzraKlein from 'ezra-klien-the-ezra-klein-show.jpeg';
+import FelixBiederman from 'felix-biederman-chapo-trap-house.jpeg';
+import GeorgeDawes from 'george-dawes-green-the-moth.jpeg';
+import GeorgiaHardstark from 'georgia-hardstark-my-favorite-murder.jpeg';
+import GlynnWashington from 'glynn-washington-snap-judgement.jpeg';
+import GriffinMcelroyfrom 'griffin-mcelroy-my-brother-my-brother-and-me.jpeg';
+import HannaRosin from 'hanna-rosin-invisibilia.jpeg';
+import HenryZebrowski from 'henry-zebrowski-the-last-podcast-on-the-left.jpg';
+import HollyFrey from 'holly-frey-stuff-you-missed-in-history-class.jpg';
+import JamesCooper from 'james-cooper-my-dad-wrote-a-porno.jpeg';
+import JamieMorton from 'jamie-morton-my-dad-wrote-a-porno.jpeg';
+import JodyAvirgan from 'jody-avirgan-fivethirtyeight-politics.jpeg';
+import JonFavreau from 'jon-favreau-pod-save-america.jpg';
+import JonLovett from 'jon-lovett-pod-save-america.jpg';
+import JonathanGoldstein from 'jonathan-goldstein-heavyweight.jpeg';
+import JustinMcelroy from 'justin-mcelroy-my-brother-my-brother-and-me.jpeg';
+import KarenKilgariff from 'karen-kilgariff-my-favorite-murder.jpeg';
+import KrystynaHutchinson from 'krystyna-hutchinson-guys-we-fucked.jpeg';
+import LauraBeil from 'laura-beil-dr-death.jpeg';
+import LindaHolmes from 'linda-holmes-pop-culture-happy-hour.jpeg';
+import LindsayGraham from 'lindsay-graham-american-scandal.jpeg';
+import LuluMiller from 'lulu-miller-invisibilia.jpeg';
+import MalcolmGladwell from 'malcolm-gladwell-revisionist-history.jpeg';
+import MarcMaron from 'marc-maron-wtf-with-marc-maron.jpeg';
+import MarcusParks from 'marcus-parks-the-last-podcast-on-the-left.jpeg';
+import MattChristman from 'matt-christman-chapo-trap-house.jpeg';
+import MichaelBarbaro from 'michael-barbaro-the-daily.jpeg';
+import MikeBoudet from 'mike-boudet-sword-and-scale.jpeg';
+import NateSilver from 'nate-silver-fivethirtyeight-politics.jpeg';
+import NeilDegrasseTyson from 'neil-degrasse-tyson-startalk-radio.jpeg';
+import Nic from 'nic-true-crime-garage.jpeg';
+import NickVanDerKolk from 'nick-van-der-kolk-love-and-radio.jpeg';
+import NigelPoor from 'nigel-poor-ear-hustle.jpeg';
+import PeterSagal from 'peter-sagal-wait-wait-dont-tell-me.jpg';
+import RachelMaddow from 'rachel-maddow-the-rachel-maddow-show.jpeg';
+import ShankarVedantam from 'shankar-vedantam-hidden-brain.jpg';
+import TerryGross from 'terry-gross-fresh-air.jpeg';
+import TimFerriss from 'tim-ferriss-the-tim-ferriss-show.jpeg';
+import TommyVietor from 'tommy-vietor-pod-save-america.jpg';
+import TracyVWilson from 'tracy-v-wilson-stuff-you-missed-in-history-class.jpg';
+import Travis Mcelroyfrom 'travis-mcelroy-my-brother-my-brother-and-me.jpeg';
+import VirgilTexas from 'virgil-texas-chapo-trap-house.jpeg';
+import WillMenaker from 'will-menaker-chapo-trap-house.jpg';
+
 
 // show images
 import TwoDopeQueens from './img/show/2-dope-queens.png';
@@ -65,6 +124,45 @@ import TheDirtbagDiaries from './img/show/the-dirtbag-diaries.jpg';
 import TheEnormocast from './img/show/the-enormocast.jpeg';
 import Serial from './img/show/serial.png';
 import Freakanomics from './img/show/freakanomics.jpeg';
+import AmericanScandal from 'american-scandal.jpeg';
+import ChapoTrapHouse from 'chapo-trap-house.png';
+import ConanOBrienNeedsAFriend from 'conan-obrien-needs-a-friend.jpeg';
+import DanCarlinsHardcoreHistory from 'dan-carlins-hardcore-history.jpeg';
+import DrDeath from 'dr-death.jpeg';
+import EarHustle from 'ear-hustle.jpeg';
+import FiveThirtyEightPolitics from 'fivethirtyeight-politics.png';
+import FreshAir from 'fresh-air.png';
+import GuysWeFucked from 'guys-we-fucked.jpeg';
+import HeavyWeight from 'heavyweight.png';
+import HiddenBrain from 'hidden-brain.png';
+import HowIBuiltThis from 'how-i-built-this.png';
+import Invisibilia from 'invisibilia.png';
+import Lore from 'lore.png';
+import LoveAndRadio from 'love-and-radio.png';
+import MyBrotherMyBrotherAndMe from 'my-brother-my-brother-and-me.jpeg';
+import MyDadWroteAPorno from 'my-dad-wrote-a-porno.jpg';
+import MyFavoriteMurder from 'my-favorite-murder.jpeg';
+import PodSaveAmerica from 'pod-save-america.jpg';
+import PopCultureHappyHour from 'pop-culture-happy-hour.png';
+import RachelMaddowShow from 'rachel-maddow-show.jpeg';
+import RadiolabPresentsMorePerfect from 'radiolab-presents-more-perfect.jpeg';
+import RevisionistHistory from 'revisionist-history.png';
+import STown from 's-town.jpeg';
+import SavageLovecast from 'savage-lovecast.jpeg';
+import SleepWithMe from 'sleep-with-me.jpeg';
+import SnapJudgement from 'snap-judgement.jpeg';
+import StartalkRadio from 'startalk-radio.jpeg';
+import StuffYouMissedInHistoryClass from 'stuff-you-missed-in-history-class.jpeg';
+import SwordAndScale from 'sword-and-scale.jpeg';
+import TheBenShapiroShow from 'the-ben-shapiro-show.jpeg';
+import TheDaily from 'the-daily.jpeg';
+import TheEzraKleinShow from 'the-ezra-klein-show.jpeg';
+import TheLastPodcastOnTheLeft from 'the-last-podcast-on-the-left.jpeg';
+import TheMoth from 'the-moth.jpeg';
+import TheTimeFerrissShowfrom 'the-tim-ferriss-show.jpeg';
+import TrueCrimeGarage from 'true-crime-garage.jpeg';
+import WaitWaitDontTellMe from 'wait-wait-dont-tell-me.png';
+import WTFWithMarcMaron from 'wtf-with-marc-maron.jpeg';
 
 class App extends Component {
   constructor() {
@@ -525,11 +623,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// TODO
-/* Typeahead should handle the input as "Selected" and set it to state,
-then once a suer has sleected a single item, display it in the content box, centered */
-/* Change facecards to flexbox? */
-/* Build up db of shows and hosts */
-
