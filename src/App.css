@@ -31,16 +31,16 @@ footer{
 }
 
 .container-small, .container-large {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .sortButtons{
-    margin:20px auto;
-    width:235px;
+  margin:20px auto;
+  width:235px;
 }
 
 .btn {
-    margin: 0 5px;
+  margin: 0 5px;
 }
 
 .button{
@@ -61,6 +61,20 @@ opacity:0.8;
 .button p{
   font-size:20px;
   margin:0px;
+}
+
+.modalFaceCardContent {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-evenly;
+}
+
+div.modalFaceCardContent.row::after {
+  content: none !important; /* fixes bug where last element would not center correctly */
+}
+
+div.modalFaceCardContent.row::before {
+  content: none !important; /* fixes bug where last element would not center correctly */
 }
 
 .typeahead-container{

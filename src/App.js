@@ -133,7 +133,7 @@ import EarHustle from './img/show/ear-hustle.jpeg';
 import FiveThirtyEightPolitics from './img/show/fivethirtyeight-politics.png';
 import FreshAir from './img/show/fresh-air.png';
 import GuysWeFucked from './img/show/guys-we-fucked.jpeg';
-import HeavyWeight from './img/show/heavyweight.png';
+import HeavyWeight from './img/show/heavyweight.jpeg';
 import HiddenBrain from './img/show/hidden-brain.png';
 import HowIBuiltThis from './img/show/how-i-built-this.png';
 import Invisibilia from './img/show/invisibilia.png';
