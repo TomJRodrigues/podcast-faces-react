@@ -44,6 +44,65 @@ import SarahKoenig from './img/sarah-koenig-serial.jpg';
 import StaceyVanekSmith from './img/stacey-vanek-smith-the-indicator.jpg';
 import StephenJDubner from './img/stephen-j-dubner-freakanomics.jpg';
 import WendyZukerman from './img/wendy-zukerman-science-vs.jpg';
+import AaronMahnke from './img/aaron-mahnke-lore.jpg';
+import AliceLevine from './img/alice-levine-my-dad-wrote-a-porno.jpeg';
+import AlixSpiegel from './img/alix-spiegel-invisibilia.jpeg';
+import AmberALeeFrost from './img/amber-alee-frost-chapo-trap-house.jpeg';
+import BenKissel from './img/ben-kissel-the-last-podcast-on-the-left.jpeg';
+import BenShapiro from './img/ben-shapiro-the-ben-shapiro-show.jpeg';
+import BrianReed from './img/brian-reed-s-town.jpeg';
+import Captain from './img/captain-true-crime-garage.jpeg';
+import ConanOBrien from './img/conan-obrien-conan-obrien-needs-a-friend.jpeg';
+import CorinneFisher from './img/corinne-fisher-guys-we-fucked.jpeg';
+import DanCarlin from './img/dan-carlin-dan-carlins-hardcore-history.jpeg';
+import DanPfeiffer from './img/dan-pfeiffer-pod-save-america.jpg';
+import DanSavage from './img/dan-savage-savage-lovecast.jpeg';
+import DrewAckerman from './img/drew-ackerman-sleep-with-me.jpeg';
+import EarlonneWoods from './img/earlonne-woods-ear-hustle.jpeg';
+import EzraKlein from './img/ezra-klien-the-ezra-klein-show.jpeg';
+import FelixBiederman from './img/felix-biederman-chapo-trap-house.jpeg';
+import GeorgeDawes from './img/george-dawes-green-the-moth.jpeg';
+import GeorgiaHardstark from './img/georgia-hardstark-my-favorite-murder.jpeg';
+import GlynnWashington from './img/glynn-washington-snap-judgement.jpeg';
+import GriffinMcelroy from './img/griffin-mcelroy-my-brother-my-brother-and-me.jpeg';
+import HannaRosin from './img/hanna-rosin-invisibilia.jpeg';
+import HenryZebrowski from './img/henry-zebrowski-the-last-podcast-on-the-left.jpg';
+import HollyFrey from './img/holly-frey-stuff-you-missed-in-history-class.jpg';
+import JamesCooper from './img/james-cooper-my-dad-wrote-a-porno.jpeg';
+import JamieMorton from './img/jamie-morton-my-dad-wrote-a-porno.jpeg';
+import JodyAvirgan from './img/jody-avirgan-fivethirtyeight-politics.jpeg';
+import JonFavreau from './img/jon-favreau-pod-save-america.jpg';
+import JonLovett from './img/jon-lovett-pod-save-america.jpg';
+import JonathanGoldstein from './img/jonathan-goldstein-heavyweight.jpeg';
+import JustinMcelroy from './img/justin-mcelroy-my-brother-my-brother-and-me.jpeg';
+import KarenKilgariff from './img/karen-kilgariff-my-favorite-murder.jpeg';
+import KrystynaHutchinson from './img/krystyna-hutchinson-guys-we-fucked.jpeg';
+import LauraBeil from './img/laura-beil-dr-death.jpeg';
+import LindaHolmes from './img/linda-holmes-pop-culture-happy-hour.jpeg';
+import LindsayGraham from './img/lindsay-graham-american-scandal.jpeg';
+import LuluMiller from './img/lulu-miller-invisibilia.jpeg';
+import MalcolmGladwell from './img/malcolm-gladwell-revisionist-history.jpeg';
+import MarcMaron from './img/marc-maron-wtf-with-marc-maron.jpeg';
+import MarcusParks from './img/marcus-parks-the-last-podcast-on-the-left.jpeg';
+import MattChristman from './img/matt-christman-chapo-trap-house.jpeg';
+import MichaelBarbaro from './img/michael-barbaro-the-daily.jpeg';
+import MikeBoudet from './img/mike-boudet-sword-and-scale.jpeg';
+import NateSilver from './img/nate-silver-fivethirtyeight-politics.jpeg';
+import NeilDegrasseTyson from './img/neil-degrasse-tyson-startalk-radio.jpeg';
+import Nic from './img/nic-true-crime-garage.jpeg';
+import NickVanDerKolk from './img/nick-van-der-kolk-love-and-radio.jpeg';
+import NigelPoor from './img/nigel-poor-ear-hustle.jpeg';
+import PeterSagal from './img/peter-sagal-wait-wait-dont-tell-me.jpg';
+import RachelMaddow from './img/rachel-maddow-the-rachel-maddow-show.jpeg';
+import ShankarVedantam from './img/shankar-vedantam-hidden-brain.jpg';
+import TerryGross from './img/terry-gross-fresh-air.jpeg';
+import TimFerriss from './img/tim-ferriss-the-tim-ferriss-show.jpeg';
+import TommyVietor from './img/tommy-vietor-pod-save-america.jpg';
+import TracyVWilson from './img/tracy-v-wilson-stuff-you-missed-in-history-class.jpg';
+import TravisMcelroy from './img/travis-mcelroy-my-brother-my-brother-and-me.jpeg';
+import VirgilTexas from './img/virgil-texas-chapo-trap-house.jpeg';
+import WillMenaker from './img/will-menaker-chapo-trap-house.jpg';
+
 
 // show images
 import TwoDopeQueens from './img/show/2-dope-queens.png';
@@ -65,6 +124,45 @@ import TheDirtbagDiaries from './img/show/the-dirtbag-diaries.jpg';
 import TheEnormocast from './img/show/the-enormocast.jpeg';
 import Serial from './img/show/serial.png';
 import Freakanomics from './img/show/freakanomics.jpeg';
+import AmericanScandal from './img/show/american-scandal.jpeg';
+import ChapoTrapHouse from './img/show/chapo-trap-house.png';
+import ConanOBrienNeedsAFriend from './img/show/conan-obrien-needs-a-friend.jpeg';
+import DanCarlinsHardcoreHistory from './img/show/dan-carlins-hardcore-history.jpeg';
+import DrDeath from './img/show/dr-death.jpeg';
+import EarHustle from './img/show/ear-hustle.jpeg';
+import FiveThirtyEightPolitics from './img/show/fivethirtyeight-politics.png';
+import FreshAir from './img/show/fresh-air.png';
+import GuysWeFucked from './img/show/guys-we-fucked.jpeg';
+import HeavyWeight from './img/show/heavyweight.jpeg';
+import HiddenBrain from './img/show/hidden-brain.png';
+import HowIBuiltThis from './img/show/how-i-built-this.png';
+import Invisibilia from './img/show/invisibilia.png';
+import Lore from './img/show/lore.png';
+import LoveAndRadio from './img/show/love-and-radio.png';
+import MyBrotherMyBrotherAndMe from './img/show/my-brother-my-brother-and-me.jpeg';
+import MyDadWroteAPorno from './img/show/my-dad-wrote-a-porno.jpg';
+import MyFavoriteMurder from './img/show/my-favorite-murder.jpeg';
+import PodSaveAmerica from './img/show/pod-save-america.jpg';
+import PopCultureHappyHour from './img/show/pop-culture-happy-hour.png';
+import RachelMaddowShow from './img/show/rachel-maddow-show.jpeg';
+import RadiolabPresentsMorePerfect from './img/show/radiolab-presents-more-perfect.jpeg';
+import RevisionistHistory from './img/show/revisionist-history.png';
+import STown from './img/show/s-town.jpeg';
+import SavageLovecast from './img/show/savage-lovecast.jpeg';
+import SleepWithMe from './img/show/sleep-with-me.jpeg';
+import SnapJudgement from './img/show/snap-judgement.jpeg';
+import StartalkRadio from './img/show/startalk-radio.jpeg';
+import StuffYouMissedInHistoryClass from './img/show/stuff-you-missed-in-history-class.jpeg';
+import SwordAndScale from './img/show/sword-and-scale.jpeg';
+import TheBenShapiroShow from './img/show/the-ben-shapiro-show.jpeg';
+import TheDaily from './img/show/the-daily.jpeg';
+import TheEzraKleinShow from './img/show/the-ezra-klein-show.jpeg';
+import TheLastPodcastOnTheLeft from './img/show/the-last-podcast-on-the-left.jpeg';
+import TheMoth from './img/show/the-moth.jpeg';
+import TheTimFerrissShow from './img/show/the-tim-ferriss-show.jpeg';
+import TrueCrimeGarage from './img/show/true-crime-garage.jpeg';
+import WaitWaitDontTellMe from './img/show/wait-wait-dont-tell-me.png';
+import WTFWithMarcMaron from './img/show/wtf-with-marc-maron.jpeg';
 
 class App extends Component {
   constructor() {
@@ -414,6 +512,600 @@ class App extends Component {
               show: "Science Vs"
             }
           ]
+        },
+        {
+          show: "American Scandal",
+          showurl: AmericanScandal,
+          hosts: [
+            {
+              firstName: "Lindsay",
+              lastName: "Graham",
+              personurl: LindsayGraham,
+              show: "American Scandal"
+            }
+          ]
+        },
+        {
+          show: "Chapo Trap House",
+          showurl: ChapoTrapHouse,
+          hosts: [
+            {
+              firstName: "Amber",
+              lastName: "A'Lee Frost",
+              personurl: AmberALeeFrost,
+              show: "Chapo Trap House"
+            },
+            {
+              firstName: "Felix",
+              lastName: "Biederman",
+              personurl: FelixBiederman,
+              show: "Chapo Trap House"
+            },
+            {
+              firstName: "Matt",
+              lastName: "Christman",
+              personurl: MattChristman,
+              show: "Chapo Trap House"
+            },
+            {
+              firstName: "Virgil",
+              lastName: "Texas",
+              personurl: VirgilTexas,
+              show: "Chapo Trap House"
+            },
+            {
+              firstName: "Will",
+              lastName: "Menaker",
+              personurl: WillMenaker,
+              show: "Chapo Trap House"
+            }
+          ]
+        },
+        {
+          show: "Conan O'Brien Needs a Friend",
+          showurl: ConanOBrienNeedsAFriend,
+          hosts: [
+            {
+              firstName: "Conan",
+              lastName: "O'Brien",
+              personurl: ConanOBrien,
+              show: "Conan O'Brien Needs a Friend"
+            }
+          ]
+        },
+        {
+          show: "Dan Carlin's Hardcore History",
+          showurl: DanCarlinsHardcoreHistory,
+          hosts: [
+            {
+              firstName: "Dan",
+              lastName: "Carlin",
+              personurl: DanCarlin,
+              show: "Dan Carlin's Hardcore History"
+            }
+          ]
+        },
+        {
+          show: "Dr. Death",
+          showurl: DrDeath,
+          hosts: [
+            {
+              firstName: "Laura",
+              lastName: "Beil",
+              personurl: LauraBeil,
+              show: "Dr. Death"
+            }
+          ]
+        },
+        {
+          show: "Ear Hustle",
+          showurl: EarHustle,
+          hosts: [
+            {
+              firstName: "Earlonne",
+              lastName: "Woods",
+              personurl: EarlonneWoods,
+              show: "Ear Hustle"
+            },
+            {
+              firstName: "Nigel",
+              lastName: "Poor",
+              personurl: NigelPoor,
+              show: "Ear Hustle"
+            }
+          ]
+        },
+        {
+          show: "FiveThirtyEight Politics",
+          showurl: FiveThirtyEightPolitics,
+          hosts: [
+            {
+              firstName: "Jody",
+              lastName: "Avirgan",
+              personurl: JodyAvirgan,
+              show: "FiveThirtyEight Politics"
+            },
+            {
+              firstName: "Nate",
+              lastName: "Silver",
+              personurl: NateSilver,
+              show: "FiveThirtyEight Politics"
+            }
+          ]
+        },
+        {
+          show: "Fresh Air",
+          showurl: FreshAir,
+          hosts: [
+            {
+              firstName: "Terry",
+              lastName: "Gross",
+              personurl: TerryGross,
+              show: "Fresh Air"
+            }
+          ]
+        },
+        {
+          show: "Guys We Fucked",
+          showurl: GuysWeFucked,
+          hosts: [
+            {
+              firstName: "Corinne",
+              lastName: "Fisher",
+              personurl: CorinneFisher,
+              show: "Guys We Fucked"
+            },
+            {
+              firstName: "Krystyna",
+              lastName: "Hutchinson",
+              personurl: KrystynaHutchinson,
+              show: "Guys We Fucked"
+            }
+          ]
+        },
+        {
+          show: "Heavyweight",
+          showurl: HeavyWeight,
+          hosts: [
+            {
+              firstName: "Jonathan",
+              lastName: "Goldstein",
+              personurl: JonathanGoldstein,
+              show: "Heavyweight"
+            }
+          ]
+        },
+        {
+          show: "Hidden Brain",
+          showurl: HiddenBrain,
+          hosts: [
+            {
+              firstName: "Shankar",
+              lastName: "Vedantim",
+              personurl: ShankarVedantam,
+              show: "Hidden Brain"
+            }
+          ]
+        },
+        {
+          show: "How I Built This",
+          showurl: HowIBuiltThis,
+          hosts: [
+            {
+              firstName: "Guy",
+              lastName: "Raz",
+              personurl: GuyRaz,
+              show: "How I Built This"
+            }
+          ]
+        },
+        {
+          show: "Invisibilia",
+          showurl: Invisibilia,
+          hosts: [
+            {
+              firstName: "Alix",
+              lastName: "Spiegel",
+              personurl: AlixSpiegel,
+              show: "Invisibilia"
+            },
+            {
+              firstName: "Hanna",
+              lastName: "Rosin",
+              personurl: HannaRosin,
+              show: "Invisibilia"
+            },
+            {
+              firstName: "Lulu",
+              lastName: "Miller",
+              personurl: LuluMiller,
+              show: "Invisibilia"
+            }
+          ]
+        },
+        {
+          show: "Lore",
+          showurl: Lore,
+          hosts: [
+            {
+              firstName: "Aaron",
+              lastName: "Mahnke",
+              personurl: AaronMahnke,
+              show: "Lore"
+            }
+          ]
+        },
+        {
+          show: "Love and Radio",
+          showurl: LoveAndRadio,
+          hosts: [
+            {
+              firstName: "Nick",
+              lastName: "Van Der Kolk",
+              personurl: NickVanDerKolk,
+              show: "Love and Radio"
+            }
+          ]
+        },
+        {
+          show: "My Brother and My Brother and Me",
+          showurl: MyBrotherMyBrotherAndMe,
+          hosts: [
+            {
+              firstName: "Griffin",
+              lastName: "McElroy",
+              personurl: GriffinMcelroy,
+              show: "My Brother and My Brother and Me"
+            },
+            {
+              firstName: "Justin",
+              lastName: "McElroy",
+              personurl: JustinMcelroy,
+              show: "My Brother and My Brother and Me"
+            },
+            {
+              firstName: "Travis",
+              lastName: "McElroy",
+              personurl: TravisMcelroy,
+              show: "My Brother and My Brother and Me"
+            }
+          ]
+        },
+        {
+          show: "My Dad Wrote a Porno",
+          showurl: MyDadWroteAPorno,
+          hosts: [
+            {
+              firstName: "Alice",
+              lastName: "Levine",
+              personurl: AliceLevine,
+              show: "My Dad Wrote a Porno"
+            },
+            {
+              firstName: "James",
+              lastName: "Cooper",
+              personurl: JamesCooper,
+              show: "My Dad Wrote a Porno"
+            },
+            {
+              firstName: "Jamie",
+              lastName: "Morton",
+              personurl: JamieMorton,
+              show: "My Dad Wrote a Porno"
+            }
+          ]
+        },
+        {
+          show: "My Favorite Murder",
+          showurl: MyFavoriteMurder,
+          hosts: [
+            {
+              firstName: "Georgia",
+              lastName: "Hardstark",
+              personurl: GeorgiaHardstark,
+              show: "My Favorite Murder"
+            },
+            {
+              firstName: "Karen",
+              lastName: "Kilgariff",
+              personurl: KarenKilgariff,
+              show: "My Favorite Murder"
+            }
+          ]
+        },
+        {
+          show: "Pod Save America",
+          showurl: PodSaveAmerica,
+          hosts: [
+            {
+              firstName: "Dan",
+              lastName: "Pfeiffer",
+              personurl: DanPfeiffer,
+              show: "Pod Save America"
+            },
+            {
+              firstName: "Jon",
+              lastName: "Favreau",
+              personurl: JonFavreau,
+              show: "Pod Save America"
+            },
+            {
+              firstName: "Jon",
+              lastName: "Lovett",
+              personurl: JonLovett,
+              show: "Pod Save America"
+            },
+            {
+              firstName: "Tommy",
+              lastName: "Vietor",
+              personurl: TommyVietor,
+              show: "Pod Save America"
+            }
+          ]
+        },
+        {
+          show: "Pop Culture Happy Hour",
+          showurl: PopCultureHappyHour,
+          hosts: [
+            {
+              firstName: "Linda",
+              lastName: "Holmes",
+              personurl: LindaHolmes,
+              show: "Pop Culture Happy Hour"
+            }
+          ]
+        },
+        {
+          show: "The Rachel Maddow Show",
+          showurl: RachelMaddowShow,
+          hosts: [
+            {
+              firstName: "Rachel",
+              lastName: "Maddow",
+              personurl: RachelMaddow,
+              show: "The Rachel Maddow Show"
+            }
+          ]
+        },
+        {
+          show: "Radiolab Presents: More Perfect",
+          showurl: RadiolabPresentsMorePerfect,
+          hosts: [
+            {
+              firstName: "Jad",
+              lastName: "Abumrad",
+              personurl: JadAbumrad,
+              show: "Radiolab Presents: More Perfect"
+            }
+          ]
+        },
+        {
+          show: "Revisionist History",
+          showurl: RevisionistHistory,
+          hosts: [
+            {
+              firstName: "Malcolm",
+              lastName: "Gladwell",
+              personurl: MalcolmGladwell,
+              show: "Revisionist History"
+            }
+          ]
+        },
+        {
+          show: "S-Town",
+          showurl: STown,
+          hosts: [
+            {
+              firstName: "Brian",
+              lastName: "Reed",
+              personurl: BrianReed,
+              show: "S-Town"
+            }
+          ]
+        },
+        {
+          show: "Savage Lovecast",
+          showurl: SavageLovecast,
+          hosts: [
+            {
+              firstName: "Dan",
+              lastName: "Savage",
+              personurl: DanSavage,
+              show: "Savage Lovecast"
+            }
+          ]
+        },
+        {
+          show: "Sleep With Me",
+          showurl: SleepWithMe,
+          hosts: [
+            {
+              firstName: "Drew",
+              lastName: "Ackerman",
+              personurl: DrewAckerman,
+              show: "Sleep With Me"
+            }
+          ]
+        },
+        {
+          show: "Snap Judgement",
+          showurl: SnapJudgement,
+          hosts: [
+            {
+              firstName: "Glynn",
+              lastName: "Washington",
+              personurl: GlynnWashington,
+              show: "Snap Judgement"
+            }
+          ]
+        },
+        {
+          show: "Startalk Radio",
+          showurl: StartalkRadio,
+          hosts: [
+            {
+              firstName: "Neil",
+              lastName: "Degrasse Tyson",
+              personurl: NeilDegrasseTyson,
+              show: "Startalk Radio"
+            }
+          ]
+        },
+        {
+          show: "Stuff You Missed In History Class",
+          showurl: StuffYouMissedInHistoryClass,
+          hosts: [
+            {
+              firstName: "Holly",
+              lastName: "Frey",
+              personurl: HollyFrey,
+              show: "Stuff You Missed In History Class"
+            },
+            {
+              firstName: "Tracy",
+              lastName: "V. Wilson",
+              personurl: TracyVWilson,
+              show: "Stuff You Missed In History Class"
+            }
+          ]
+        },
+        {
+          show: "Sword and Scale",
+          showurl: SwordAndScale,
+          hosts: [
+            {
+              firstName: "Mike",
+              lastName: "Boudet",
+              personurl: MikeBoudet,
+              show: "Sword and Scale"
+            }
+          ]
+        },
+        {
+          show: "The Ben Shapiro Show",
+          showurl: TheBenShapiroShow,
+          hosts: [
+            {
+              firstName: "Ben",
+              lastName: "Shapiro",
+              personurl: BenShapiro,
+              show: "The Ben Shapiro Show"
+            }
+          ]
+        },
+        {
+          show: "The Daily",
+          showurl: TheDaily,
+          hosts: [
+            {
+              firstName: "Michael",
+              lastName: "Barbaro",
+              personurl: MichaelBarbaro,
+              show: "The Daily"
+            }
+          ]
+        },
+        {
+          show: "The Ezra Klein Show",
+          showurl: TheEzraKleinShow,
+          hosts: [
+            {
+              firstName: "Ezra",
+              lastName: "Klein",
+              personurl: EzraKlein,
+              show: "The Ezra Klein Show"
+            }
+          ]
+        },
+        {
+          show: "The Last Podcast on the Left",
+          showurl: TheLastPodcastOnTheLeft,
+          hosts: [
+            {
+              firstName: "Ben",
+              lastName: "Kissel",
+              personurl: BenKissel,
+              show: "The Last Podcast on the Left"
+            },
+            {
+              firstName: "Henry",
+              lastName: "Zebrowski",
+              personurl: HenryZebrowski,
+              show: "The Last Podcast on the Left"
+            },
+            {
+              firstName: "Marcus",
+              lastName: "Parks",
+              personurl: MarcusParks,
+              show: "The Last Podcast on the Left"
+            }
+          ]
+        },
+        {
+          show: "The Moth",
+          showurl: TheMoth,
+          hosts: [
+            {
+              firstName: "George",
+              lastName: "Dawes",
+              personurl: GeorgeDawes,
+              show: "The Moth"
+            }
+          ]
+        },
+        {
+          show: "The Tim Ferriss Show",
+          showurl: TheTimFerrissShow,
+          hosts: [
+            {
+              firstName: "Tim",
+              lastName: "Ferriss",
+              personurl: TimFerriss,
+              show: "The Tim Ferriss Show"
+            }
+          ]
+        },
+        {
+          show: "True Crime Garage",
+          showurl: TrueCrimeGarage,
+          hosts: [
+            {
+              firstName: "Captain",
+              lastName: "",
+              personurl: Captain,
+              show: "True Crime Garage"
+            },
+            {
+              firstName: "Nic",
+              lastName: "",
+              personurl: Nic,
+              show: "True Crime Garage"
+            }
+          ]
+        },
+        {
+          show: "Wait Wait Don't Tell Me",
+          showurl: WaitWaitDontTellMe,
+          hosts: [
+            {
+              firstName: "Peter",
+              lastName: "Sagal",
+              personurl: PeterSagal,
+              show: "Wait Wait Don't Tell Me"
+            }
+          ]
+        },
+        {
+          show: "WTF with Marc Maron",
+          showurl: WTFWithMarcMaron,
+          hosts: [
+            {
+              firstName: "Marc",
+              lastName: "Maron",
+              personurl: MarcMaron,
+              show: "WTF with Marc Maron"
+            }
+          ]
         }
       ],
       contentToRender: [],
@@ -525,11 +1217,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// TODO
-/* Typeahead should handle the input as "Selected" and set it to state,
-then once a suer has sleected a single item, display it in the content box, centered */
-/* Change facecards to flexbox? */
-/* Build up db of shows and hosts */
-

@@ -38,7 +38,7 @@ export default class ShowCard extends Component {
             <Modal.Title>{this.props.show}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className="row">
+            <div className="modalFaceCardContent row">
               {  // iterates over the host array and requests an image and name for each
                 this.props.resource.hosts.map((host, index) => {
                   return (
