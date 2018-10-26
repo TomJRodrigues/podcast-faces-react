@@ -13,7 +13,6 @@ export default class TypeAheadContainer extends Component {
 
 	// event handlers
 	handleChange(selected) {
-		console.log(selected);
 		this.props.handleChangeHelper(selected);
 	}
 
