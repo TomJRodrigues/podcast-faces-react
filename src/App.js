@@ -172,6 +172,10 @@ class App extends Component {
     this.showByName = this.showByName.bind(this);
     this.showByShow = this.showByShow.bind(this);
     this.handleChangeHelper = this.handleChangeHelper.bind(this);
+    this.alphabetizeShowList = this.alphabetizeShowList.bind(this);
+    this.pushShowsToTypeAheadList = this.pushShowsToTypeAheadList.bind(this);
+    this.createAndDisplayContentToRender = this.createAndDisplayContentToRender.bind(this);
+    this.removeHostDuplicates = this.removeHostDuplicates.bind(this);
 
     this.state = {
       showByName: false,
@@ -1114,11 +1118,16 @@ class App extends Component {
     }
   }
 
+  resetTypeAheadOptions(tempState) {
+    tempState.typeAheadOptions.length = 0;
+  }
+
   showByName(host) {
     const tempState = this.state;
     tempState.showByName = true;
     tempState.showByShow = false;
     tempState.selected = [];
+    tempState.typeAheadOptions.length = 0;
     this.setState(tempState);
   }
 
@@ -1127,6 +1136,7 @@ class App extends Component {
     tempState.showByName = false;
     tempState.showByShow = true;
     tempState.selected = [];
+    tempState.typeAheadOptions.length = 0;
     this.setState(tempState);
   }
 
@@ -1138,70 +1148,87 @@ class App extends Component {
     this.setState(tempState);
   }
 
-  render() {
-    // sorting state so that results are alphabetical
-    if (this.state.showByShow === true) {  // sorts by show name alphabetically
-      this.state.typeAheadOptions.length = 0;
-      const tempState = this.state;
-        // resets typeAhead options
-      tempState.resources.sort(function(a, b) {
-        var nameA = a.show.toUpperCase(); // ignore upper and lowercase
-        var nameB = b.show.toUpperCase(); // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-        // names must be equal
-        return 0;
-      } );
-      tempState.resources.map((resource, index) => {
+  alphabetizeShowList() { // sorting state so that results are alphabetical
+    const tempState = this.state;
+    tempState.resources.sort(function(a, b) {
+      var nameA = a.show.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.show.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    } );
+  }
+
+  pushShowsToTypeAheadList() {
+    const tempState = this.state;
+    tempState.resources.map((resource, index) => {
         var resourceObject = Object.assign({}, resource)
         this.state.typeAheadOptions.push(resourceObject);
       });
-      this.state.contentToRender = this.state.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
-      if (this.state.selected.length > 0) {
-        this.state.contentToRender = this.state.selected; // shows just a single show/host when form is selected
+  }
+
+  createAndDisplayContentToRender() {
+    this.state.contentToRender = this.state.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
+    if (this.state.selected.length > 0) {
+      this.state.contentToRender = this.state.selected; // shows just a single show/host when form is selected
+    }
+  }
+
+  alphabetizeHostList() { // sorting state so that results are alphabetical
+    const tempState = this.state;
+    tempState.resources.map((resource, index) => {
+      resource.hosts.map((host, index) => {
+        tempState.typeAheadOptions.push(host);
+        tempState.typeAheadOptions.sort(function(a, b) {  // sorting function
+          var nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
+          var nameB = b.firstName.toUpperCase(); // ignore upper and lowercase
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          // names must be equal
+          return 0;
+        });
+      })
+    })
+  }
+
+  removeHostDuplicates() {
+    // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
+    let duplicateHostIndices = [];  // holder for duplicate host index
+    let i = 1;
+    let length = this.state.typeAheadOptions.length;
+    let options = this.state.typeAheadOptions;
+    for (i; i < length; i++) {  // iterates over the hosts and finds duplicates by first and last name
+      if ((options[i - 1].firstName === options[i].firstName) && (options[i - 1].lastName === options[i].lastName)) {
+        duplicateHostIndices.push(i);
       }
     }
+    duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
+    duplicateHostIndices.map((element) => {
+      options[element - 1].show = "Various Shows";
+      options.splice(element, 1);
+    });
+  }
 
-    if ((this.state.showByName === true)) {  // sorts by host name alphabetically and removes duplicates
-      this.state.typeAheadOptions.length = 0; // resets typeAhead options
-      const tempState = this.state;
-      tempState.resources.map((resource, index) => {
-        resource.hosts.map((host, index) => {
-          this.state.typeAheadOptions.push(host);
-          this.state.typeAheadOptions.sort(function(a, b) {  // sorting function
-            var nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
-            var nameB = b.firstName.toUpperCase(); // ignore upper and lowercase
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-            // names must be equal
-            return 0;
-          });
-        })
-      })
-      // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
-      var duplicateHostIndices = [];  // holder for duplicate host index
-      for (var i = 1, length = this.state.typeAheadOptions.length; i < length; i++) {  // iterates over the hosts and finds duplicates by first and last name
-        if ((this.state.typeAheadOptions[i - 1].firstName === this.state.typeAheadOptions[i].firstName) && (this.state.typeAheadOptions[i - 1].lastName === this.state.typeAheadOptions[i].lastName)) {
-          duplicateHostIndices.push(i);
-        }
-      }
-      duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
-      duplicateHostIndices.map((element, index) => {
-        this.state.typeAheadOptions[element - 1].show = "Various Shows";
-        this.state.typeAheadOptions.splice(element, 1);
-      });
-      this.state.contentToRender = this.state.typeAheadOptions;  // separates out content that renders from list that TypeAhead pulls from
-      if (this.state.selected.length > 0) {
-            this.state.contentToRender = this.state.selected;  // shows just a single show/host when form is selected
-          }
+  render() {
+    if (this.state.showByShow === true) {  // sorts by show name alphabetically
+      {this.alphabetizeShowList()};
+      {this.pushShowsToTypeAheadList()};
+      {this.createAndDisplayContentToRender()};
+    }
+
+    if ((this.state.showByName === true)) {
+      {this.alphabetizeHostList()};
+      {this.removeHostDuplicates()};
+      {this.createAndDisplayContentToRender()};
     }
     else {}  // no sorting
 
@@ -1232,7 +1259,7 @@ class App extends Component {
 export default App;
 
 /* TODO
--fix multiples like Jad Abumrad and Guy Raz
+-fix multiples like Jad Abumrad and Guy Raz and "various shows" error
 -fix line 1157 do not mutate state directly errors
 -Add ESLint
 -Add Prettier
