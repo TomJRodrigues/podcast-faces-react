@@ -1146,6 +1146,7 @@ class App extends Component {
     tempState.contentToRender = selected;
     tempState.selected = selected;
     this.setState(tempState);
+    console.log("change handled");
   }
 
   alphabetizeShowList() { // sorting state so that results are alphabetical
@@ -1162,14 +1163,17 @@ class App extends Component {
       // names must be equal
       return 0;
     } );
+    console.log("alphabetizeShowList ran");
   }
 
   pushShowsToTypeAheadList() {
     const tempState = this.state;
+    this.state.typeAheadOptions.length = 0;
     tempState.resources.map((resource, index) => {
         var resourceObject = Object.assign({}, resource)
         this.state.typeAheadOptions.push(resourceObject);
       });
+    console.log("pushShowsToTypeAheadList ran");
   }
 
   createAndDisplayContentToRender() {
@@ -1177,10 +1181,12 @@ class App extends Component {
     if (this.state.selected.length > 0) {
       this.state.contentToRender = this.state.selected; // shows just a single show/host when form is selected
     }
+    console.log("createAndDisplayContentToRender ran");
   }
 
   alphabetizeHostList() { // sorting state so that results are alphabetical
     const tempState = this.state;
+    tempState.typeAheadOptions.length = 0;
     tempState.resources.map((resource, index) => {
       resource.hosts.map((host, index) => {
         tempState.typeAheadOptions.push(host);
@@ -1198,24 +1204,30 @@ class App extends Component {
         });
       })
     })
+    console.log("alphabetizeHostList ran");
   }
 
   removeHostDuplicates() {
     // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
     let duplicateHostIndices = [];  // holder for duplicate host index
     let i = 1;
-    let length = this.state.typeAheadOptions.length;
     let options = this.state.typeAheadOptions;
-    for (i; i < length; i++) {  // iterates over the hosts and finds duplicates by first and last name
-      if ((options[i - 1].firstName === options[i].firstName) && (options[i - 1].lastName === options[i].lastName)) {
-        duplicateHostIndices.push(i);
+    let length = options.length;
+    if (length > 1) {
+      for (i; i < length; i++) {  // iterates over the hosts and finds duplicates by first and last name
+        if ((options[i - 1].firstName === options[i].firstName) && (options[i - 1].lastName === options[i].lastName)) {
+          duplicateHostIndices.push(i);
+        }
+      }
+      if (duplicateHostIndices.length > 0) {
+        duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
+        duplicateHostIndices.map((element) => {
+          options[element - 1].show = "Various Shows";
+          options.splice(element, 1);
+        });
       }
     }
-    duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
-    duplicateHostIndices.map((element) => {
-      options[element - 1].show = "Various Shows";
-      options.splice(element, 1);
-    });
+    console.log("removeHostDuplicates ran");
   }
 
   render() {
@@ -1260,7 +1272,7 @@ export default App;
 
 /* TODO
 -fix multiples like Jad Abumrad and Guy Raz and "various shows" error
--fix line 1157 do not mutate state directly errors
+-fix mutate state directly errors
 -Add ESLint
 -Add Prettier
 -Fix React map key warning on console
