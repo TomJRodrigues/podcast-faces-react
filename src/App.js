@@ -1146,7 +1146,6 @@ class App extends Component {
     tempState.contentToRender = selected;
     tempState.selected = selected;
     this.setState(tempState);
-    console.log("change handled");
   }
 
   alphabetizeShowList() { // sorting state so that results are alphabetical
@@ -1163,7 +1162,6 @@ class App extends Component {
       // names must be equal
       return 0;
     } );
-    console.log("alphabetizeShowList ran");
   }
 
   pushShowsToTypeAheadList() {
@@ -1173,7 +1171,6 @@ class App extends Component {
         var resourceObject = Object.assign({}, resource)
         this.state.typeAheadOptions.push(resourceObject);
       });
-    console.log("pushShowsToTypeAheadList ran");
   }
 
   createAndDisplayContentToRender() {
@@ -1181,7 +1178,6 @@ class App extends Component {
     if (this.state.selected.length > 0) {
       this.state.contentToRender = this.state.selected; // shows just a single show/host when form is selected
     }
-    console.log("createAndDisplayContentToRender ran");
   }
 
   alphabetizeHostList() { // sorting state so that results are alphabetical
@@ -1204,7 +1200,6 @@ class App extends Component {
         });
       })
     })
-    console.log("alphabetizeHostList ran");
   }
 
   removeHostDuplicates() {
@@ -1227,7 +1222,6 @@ class App extends Component {
         });
       }
     }
-    console.log("removeHostDuplicates ran");
   }
 
   render() {
