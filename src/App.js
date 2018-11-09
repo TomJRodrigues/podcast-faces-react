@@ -174,7 +174,7 @@ class App extends Component {
     this.handleChangeHelper = this.handleChangeHelper.bind(this);
     this.alphabetizeShowList = this.alphabetizeShowList.bind(this);
     this.pushShowsToTypeAheadList = this.pushShowsToTypeAheadList.bind(this);
-    this.createAndDisplayContentToRender = this.createAndDisplayContentToRender.bind(this);
+    this.pullContentToRenderFromTypeAheadList = this.pullContentToRenderFromTypeAheadList.bind(this);
     this.removeHostDuplicates = this.removeHostDuplicates.bind(this);
 
     this.state = {
@@ -1124,9 +1124,9 @@ class App extends Component {
     tempState.showByShow = false;
     tempState.selected = [];
     tempState.typeAheadOptions.length = 0;
-    this.alphabetizeHostList()
-    this.removeHostDuplicates()
-    this.createAndDisplayContentToRender()
+    this.alphabetizeHostList();
+    this.removeHostDuplicates();
+    this.pullContentToRenderFromTypeAheadList();
     console.log("showby name ran2");
     this.setState(tempState);
   }
@@ -1137,18 +1137,33 @@ class App extends Component {
     tempState.showByShow = true;
     tempState.selected = [];
     tempState.typeAheadOptions.length = 0;
-    this.alphabetizeShowList()
-    this.pushShowsToTypeAheadList()
-    this.createAndDisplayContentToRender()
+    this.alphabetizeShowList();
+    this.pushShowsToTypeAheadList();
+    this.pullContentToRenderFromTypeAheadList();
     console.log("showby show ran2");
     this.setState(tempState);
   }
 
   handleChangeHelper(selected) {
     const tempState = this.state;
-    tempState.contentToRender.length = 0;
-    tempState.contentToRender = selected;
+    if (tempState.showByName === true) {
+      this.alphabetizeHostList();
+      this.removeHostDuplicates();
+      this.pullContentToRenderFromTypeAheadList();
+    }
+    if (tempState.showByShow === true) {
+      this.alphabetizeShowList();
+      this.pushShowsToTypeAheadList();
+      this.pullContentToRenderFromTypeAheadList();
+    }
     tempState.selected = selected;
+    tempState.contentToRender = selected;
+    if (tempState.selected.length > 0) {
+      tempState.contentToRender = tempState.selected; // shows just a single show/host when form is selected
+    }
+    else {
+      this.pullContentToRenderFromTypeAheadList();
+    }
     this.setState(tempState);
   }
 
@@ -1178,12 +1193,9 @@ class App extends Component {
     this.setState(tempState);
   }
 
-  createAndDisplayContentToRender() {
+  pullContentToRenderFromTypeAheadList() {
     const tempState = this.state;
     tempState.contentToRender = tempState.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
-    if (tempState.selected.length > 0) {
-      tempState.contentToRender = tempState.selected; // shows just a single show/host when form is selected
-    }
     this.setState(tempState);
   }
 
@@ -1211,6 +1223,8 @@ class App extends Component {
 
   removeHostDuplicates() {
     // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
+    console.log("resource check:")
+    console.dir(this.state.resources);
     let tempState = this.state;
     let duplicateHostIndices = [];  // holder for duplicate host index
     let i = 1;
@@ -1231,17 +1245,16 @@ class App extends Component {
       }
     }
     this.setState(tempState);
+    console.dir(this.state.resources);
   }
 
   componentWillMount(){
     if (this.state.showByShow === true) {
       this.alphabetizeShowList()
       this.pushShowsToTypeAheadList()
-      this.createAndDisplayContentToRender()
-      console.log("showby show ran");
+      this.pullContentToRenderFromTypeAheadList()
     }
     else {
-      console.log("no sorting ran");
     }
   }
 
@@ -1276,7 +1289,7 @@ export default App;
 /* TODO
 -fix multiples like Jad Abumrad and Guy Raz and "various shows" error
 -fix error when backspacing host or show name
--fix mutate state directly errors
+-fix "expected to return a value in arrow function" errors
 -Add ESLint
 -Add Prettier
 -Fix React map key warning on console
