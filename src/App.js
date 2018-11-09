@@ -1118,16 +1118,16 @@ class App extends Component {
     }
   }
 
-  resetTypeAheadOptions(tempState) {
-    tempState.typeAheadOptions.length = 0;
-  }
-
   showByName(host) {
     const tempState = this.state;
     tempState.showByName = true;
     tempState.showByShow = false;
     tempState.selected = [];
     tempState.typeAheadOptions.length = 0;
+    this.alphabetizeHostList()
+    this.removeHostDuplicates()
+    this.createAndDisplayContentToRender()
+    console.log("showby name ran2");
     this.setState(tempState);
   }
 
@@ -1137,6 +1137,10 @@ class App extends Component {
     tempState.showByShow = true;
     tempState.selected = [];
     tempState.typeAheadOptions.length = 0;
+    this.alphabetizeShowList()
+    this.pushShowsToTypeAheadList()
+    this.createAndDisplayContentToRender()
+    console.log("showby show ran2");
     this.setState(tempState);
   }
 
@@ -1151,8 +1155,8 @@ class App extends Component {
   alphabetizeShowList() { // sorting state so that results are alphabetical
     const tempState = this.state;
     tempState.resources.sort(function(a, b) {
-      var nameA = a.show.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.show.toUpperCase(); // ignore upper and lowercase
+      let nameA = a.show.toUpperCase(); // ignore upper and lowercase
+      let nameB = b.show.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
         return -1;
       }
@@ -1166,23 +1170,26 @@ class App extends Component {
 
   pushShowsToTypeAheadList() {
     const tempState = this.state;
-    this.state.typeAheadOptions.length = 0;
+    tempState.typeAheadOptions.length = 0;
     tempState.resources.map((resource, index) => {
-        var resourceObject = Object.assign({}, resource)
-        this.state.typeAheadOptions.push(resourceObject);
+        let resourceObject = Object.assign({}, resource)
+        tempState.typeAheadOptions.push(resourceObject);
       });
+    this.setState(tempState);
   }
 
   createAndDisplayContentToRender() {
-    this.state.contentToRender = this.state.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
-    if (this.state.selected.length > 0) {
-      this.state.contentToRender = this.state.selected; // shows just a single show/host when form is selected
+    const tempState = this.state;
+    tempState.contentToRender = tempState.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
+    if (tempState.selected.length > 0) {
+      tempState.contentToRender = tempState.selected; // shows just a single show/host when form is selected
     }
+    this.setState(tempState);
   }
 
   alphabetizeHostList() { // sorting state so that results are alphabetical
+    console.log("alphabetize host list ran");
     const tempState = this.state;
-    tempState.typeAheadOptions.length = 0;
     tempState.resources.map((resource, index) => {
       resource.hosts.map((host, index) => {
         tempState.typeAheadOptions.push(host);
@@ -1200,6 +1207,7 @@ class App extends Component {
         });
       })
     })
+    this.setState(tempState);
   }
 
   removeHostDuplicates() {
@@ -1224,19 +1232,25 @@ class App extends Component {
     }
   }
 
-  render() {
-    if (this.state.showByShow === true) {  // sorts by show name alphabetically
-      {this.alphabetizeShowList()};
-      {this.pushShowsToTypeAheadList()};
-      {this.createAndDisplayContentToRender()};
+  componentWillMount(){
+    if (this.state.showByShow === true) {
+      this.alphabetizeShowList()
+      this.pushShowsToTypeAheadList()
+      this.createAndDisplayContentToRender()
+      console.log("showby show ran");
     }
+    if (this.state.showByName === true) {
+      this.alphabetizeHostList()
+      this.removeHostDuplicates()
+      this.createAndDisplayContentToRender()
+      console.log("showby name ran");
+    }
+    else {
+      console.log("no sorting ran");
+    }  // no sorting
+  }
 
-    if ((this.state.showByName === true)) {
-      {this.alphabetizeHostList()};
-      {this.removeHostDuplicates()};
-      {this.createAndDisplayContentToRender()};
-    }
-    else {}  // no sorting
+  render() {
 
     return (
       <div className="container container-small">
