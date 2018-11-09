@@ -1188,7 +1188,6 @@ class App extends Component {
   }
 
   alphabetizeHostList() { // sorting state so that results are alphabetical
-    console.log("alphabetize host list ran");
     const tempState = this.state;
     tempState.resources.map((resource, index) => {
       resource.hosts.map((host, index) => {
@@ -1212,9 +1211,10 @@ class App extends Component {
 
   removeHostDuplicates() {
     // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
+    let tempState = this.state;
     let duplicateHostIndices = [];  // holder for duplicate host index
     let i = 1;
-    let options = this.state.typeAheadOptions;
+    let options = tempState.typeAheadOptions;
     let length = options.length;
     if (length > 1) {
       for (i; i < length; i++) {  // iterates over the hosts and finds duplicates by first and last name
@@ -1230,6 +1230,7 @@ class App extends Component {
         });
       }
     }
+    this.setState(tempState);
   }
 
   componentWillMount(){
@@ -1239,15 +1240,9 @@ class App extends Component {
       this.createAndDisplayContentToRender()
       console.log("showby show ran");
     }
-    if (this.state.showByName === true) {
-      this.alphabetizeHostList()
-      this.removeHostDuplicates()
-      this.createAndDisplayContentToRender()
-      console.log("showby name ran");
-    }
     else {
       console.log("no sorting ran");
-    }  // no sorting
+    }
   }
 
   render() {
@@ -1280,6 +1275,7 @@ export default App;
 
 /* TODO
 -fix multiples like Jad Abumrad and Guy Raz and "various shows" error
+-fix error when backspacing host or show name
 -fix mutate state directly errors
 -Add ESLint
 -Add Prettier
