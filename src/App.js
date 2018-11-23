@@ -5,6 +5,7 @@ import Footer from './Footer.js';
 import SortButtons from './SortButtons.js';
 import Content from './Content.js';
 import TypeAheadContainer from './TypeAheadContainer.js';
+import _ from 'lodash';
 
 // host images
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
@@ -175,7 +176,7 @@ class App extends Component {
     this.alphabetizeShowList = this.alphabetizeShowList.bind(this);
     this.pushShowsToTypeAheadList = this.pushShowsToTypeAheadList.bind(this);
     this.pullContentToRenderFromTypeAheadList = this.pullContentToRenderFromTypeAheadList.bind(this);
-    this.removeHostDuplicates = this.removeHostDuplicates.bind(this);
+    this.populateAndRemoveDuplicateHosts = this.populateAndRemoveDuplicateHosts.bind(this);
 
     this.state = {
       showByName: false,
@@ -1114,48 +1115,31 @@ class App extends Component {
       ],
       contentToRender: [],
       typeAheadOptions: [],
-      selected: []
+      selected: [],
+      duplicateHostIndices: []
     }
   }
 
-  showByName(host) {
-    const tempState = this.state;
+  showByName() {
+    const tempState = _.cloneDeep(this.state);
     tempState.showByName = true;
     tempState.showByShow = false;
-    tempState.selected = [];
-    tempState.typeAheadOptions.length = 0;
-    this.alphabetizeHostList();
-    this.removeHostDuplicates();
-    this.pullContentToRenderFromTypeAheadList();
-    console.log("showby name ran2");
-    this.setState(tempState);
+    this.setState(tempState, () => {
+      this.alphabetizeHostList();
+    });
   }
 
-  showByShow(show) {
-    const tempState = this.state;
+  showByShow() {
+    const tempState = _.cloneDeep(this.state);
     tempState.showByName = false;
     tempState.showByShow = true;
-    tempState.selected = [];
-    tempState.typeAheadOptions.length = 0;
-    this.alphabetizeShowList();
-    this.pushShowsToTypeAheadList();
-    this.pullContentToRenderFromTypeAheadList();
-    console.log("showby show ran2");
-    this.setState(tempState);
+    this.setState(tempState, () => {
+      this.alphabetizeShowList();
+    });
   }
 
   handleChangeHelper(selected) {
-    const tempState = this.state;
-    if (tempState.showByName === true) {
-      this.alphabetizeHostList();
-      this.removeHostDuplicates();
-      this.pullContentToRenderFromTypeAheadList();
-    }
-    if (tempState.showByShow === true) {
-      this.alphabetizeShowList();
-      this.pushShowsToTypeAheadList();
-      this.pullContentToRenderFromTypeAheadList();
-    }
+    const tempState = _.cloneDeep(this.state);
     tempState.selected = selected;
     tempState.contentToRender = selected;
     if (tempState.selected.length > 0) {
@@ -1168,7 +1152,7 @@ class App extends Component {
   }
 
   alphabetizeShowList() { // sorting state so that results are alphabetical
-    const tempState = this.state;
+    const tempState = _.cloneDeep(this.state);
     tempState.resources.sort(function(a, b) {
       let nameA = a.show.toUpperCase(); // ignore upper and lowercase
       let nameB = b.show.toUpperCase(); // ignore upper and lowercase
@@ -1181,28 +1165,36 @@ class App extends Component {
       // names must be equal
       return 0;
     } );
+    console.log(tempState);
+    this.setState(tempState, () => {
+      this.pushShowsToTypeAheadList();
+    });
+    console.log(this.state);
   }
 
   pushShowsToTypeAheadList() {
-    const tempState = this.state;
+    const tempState = _.cloneDeep(this.state);
     tempState.typeAheadOptions.length = 0;
-    tempState.resources.map((resource, index) => {
+    tempState.resources.forEach((resource, index) => {
         let resourceObject = Object.assign({}, resource)
         tempState.typeAheadOptions.push(resourceObject);
       });
-    this.setState(tempState);
+    this.setState(tempState, () => {
+      this.pullContentToRenderFromTypeAheadList();
+    });
   }
 
   pullContentToRenderFromTypeAheadList() {
-    const tempState = this.state;
+    const tempState = _.cloneDeep(this.state);
     tempState.contentToRender = tempState.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
     this.setState(tempState);
   }
 
   alphabetizeHostList() { // sorting state so that results are alphabetical
-    const tempState = this.state;
-    tempState.resources.map((resource, index) => {
-      resource.hosts.map((host, index) => {
+    const tempState = _.cloneDeep(this.state);
+    tempState.typeAheadOptions.length = 0;  // clear typeAhead options
+    tempState.resources.forEach((resource, index) => {
+      resource.hosts.forEach((host, index) => {
         tempState.typeAheadOptions.push(host);
         tempState.typeAheadOptions.sort(function(a, b) {  // sorting function
           var nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
@@ -1218,19 +1210,20 @@ class App extends Component {
         });
       })
     })
-    this.setState(tempState);
+    console.log(tempState);
+    this.setState(tempState, () => {
+      this.populateAndRemoveDuplicateHosts();
+    });
   }
 
-  removeHostDuplicates() {
-    // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
-    console.log("resource check:")
-    console.dir(this.state.resources);
-    let tempState = this.state;
-    let duplicateHostIndices = [];  // holder for duplicate host index
-    let i = 1;
+  populateAndRemoveDuplicateHosts() { // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
+    const tempState = _.cloneDeep(this.state);
+    let duplicateHostIndices = tempState.duplicateHostIndices;
+    duplicateHostIndices.length = 0;
     let options = tempState.typeAheadOptions;
     let length = options.length;
-    if (length > 1) {
+    let i = 1;
+    if (length > 1 && tempState.showByName === true) {
       for (i; i < length; i++) {  // iterates over the hosts and finds duplicates by first and last name
         if ((options[i - 1].firstName === options[i].firstName) && (options[i - 1].lastName === options[i].lastName)) {
           duplicateHostIndices.push(i);
@@ -1238,24 +1231,27 @@ class App extends Component {
       }
       if (duplicateHostIndices.length > 0) {
         duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
-        duplicateHostIndices.map((element) => {
-          options[element - 1].show = "Various Shows";
-          options.splice(element, 1);
+        duplicateHostIndices.forEach((element) => {
+          tempState.typeAheadOptions[(element - 1)].show = "Various Shows";
+          tempState.typeAheadOptions.splice(element, 1);
         });
       }
     }
-    this.setState(tempState);
-    console.dir(this.state.resources);
+    this.setState(tempState, () => {
+      this.pullContentToRenderFromTypeAheadList();
+    });
   }
 
   componentWillMount(){
     if (this.state.showByShow === true) {
-      this.alphabetizeShowList()
-      this.pushShowsToTypeAheadList()
-      this.pullContentToRenderFromTypeAheadList()
+      console.log("ran");
+      this.alphabetizeShowList();
     }
     else {
     }
+  }
+
+  componentDidUpdate() {
   }
 
   render() {
@@ -1275,8 +1271,6 @@ class App extends Component {
         
         <Content
           state={this.state}
-          showByName={this.showByName}
-          showByShow={this.showByShow}
         />
         <Footer />
       </div>
