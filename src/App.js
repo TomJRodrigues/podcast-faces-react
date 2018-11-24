@@ -1146,7 +1146,7 @@ class App extends Component {
       tempState.contentToRender = tempState.selected; // shows just a single show/host when form is selected
     }
     else {
-      this.pullContentToRenderFromTypeAheadList();
+      tempState.contentToRender = tempState.typeAheadOptions;  // shows all options when form is not selected
     }
     this.setState(tempState);
   }
@@ -1162,14 +1162,11 @@ class App extends Component {
       if (nameA > nameB) {
         return 1;
       }
-      // names must be equal
-      return 0;
+      return 0; // names must be equa
     } );
-    console.log(tempState);
     this.setState(tempState, () => {
       this.pushShowsToTypeAheadList();
     });
-    console.log(this.state);
   }
 
   pushShowsToTypeAheadList() {
@@ -1186,7 +1183,7 @@ class App extends Component {
 
   pullContentToRenderFromTypeAheadList() {
     const tempState = _.cloneDeep(this.state);
-    tempState.contentToRender = tempState.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
+    tempState.contentToRender = _.cloneDeep(tempState.typeAheadOptions); // separates out content that renders from list that TypeAhead pulls from
     this.setState(tempState);
   }
 
@@ -1210,7 +1207,6 @@ class App extends Component {
         });
       })
     })
-    console.log(tempState);
     this.setState(tempState, () => {
       this.populateAndRemoveDuplicateHosts();
     });
@@ -1244,14 +1240,10 @@ class App extends Component {
 
   componentWillMount(){
     if (this.state.showByShow === true) {
-      console.log("ran");
       this.alphabetizeShowList();
     }
     else {
     }
-  }
-
-  componentDidUpdate() {
   }
 
   render() {
