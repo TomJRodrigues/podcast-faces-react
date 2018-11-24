@@ -1124,18 +1124,16 @@ class App extends Component {
     const tempState = _.cloneDeep(this.state);
     tempState.showByName = true;
     tempState.showByShow = false;
-    this.setState(tempState, () => {
-      this.alphabetizeHostList();
-    });
+    tempState.selected.length = 0;
+    this.alphabetizeHostList(tempState);
   }
 
   showByShow() {
     const tempState = _.cloneDeep(this.state);
     tempState.showByName = false;
     tempState.showByShow = true;
-    this.setState(tempState, () => {
-      this.alphabetizeShowList();
-    });
+    tempState.selected.length = 0;
+    this.alphabetizeShowList(tempState);
   }
 
   handleChangeHelper(selected) {
@@ -1151,8 +1149,7 @@ class App extends Component {
     this.setState(tempState);
   }
 
-  alphabetizeShowList() { // sorting state so that results are alphabetical
-    const tempState = _.cloneDeep(this.state);
+  alphabetizeShowList(tempState) { // sorting state so that results are alphabetical
     tempState.resources.sort(function(a, b) {
       let nameA = a.show.toUpperCase(); // ignore upper and lowercase
       let nameB = b.show.toUpperCase(); // ignore upper and lowercase
@@ -1164,31 +1161,24 @@ class App extends Component {
       }
       return 0; // names must be equa
     } );
-    this.setState(tempState, () => {
-      this.pushShowsToTypeAheadList();
-    });
+    this.pushShowsToTypeAheadList(tempState);
   }
 
-  pushShowsToTypeAheadList() {
-    const tempState = _.cloneDeep(this.state);
+  pushShowsToTypeAheadList(tempState) {
     tempState.typeAheadOptions.length = 0;
     tempState.resources.forEach((resource, index) => {
         let resourceObject = Object.assign({}, resource)
         tempState.typeAheadOptions.push(resourceObject);
       });
-    this.setState(tempState, () => {
-      this.pullContentToRenderFromTypeAheadList();
-    });
+    this.pullContentToRenderFromTypeAheadList(tempState);
   }
 
-  pullContentToRenderFromTypeAheadList() {
-    const tempState = _.cloneDeep(this.state);
-    tempState.contentToRender = _.cloneDeep(tempState.typeAheadOptions); // separates out content that renders from list that TypeAhead pulls from
+  pullContentToRenderFromTypeAheadList(tempState) {
+    tempState.contentToRender = tempState.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
     this.setState(tempState);
   }
 
-  alphabetizeHostList() { // sorting state so that results are alphabetical
-    const tempState = _.cloneDeep(this.state);
+  alphabetizeHostList(tempState) { // sorting state so that results are alphabetical
     tempState.typeAheadOptions.length = 0;  // clear typeAhead options
     tempState.resources.forEach((resource, index) => {
       resource.hosts.forEach((host, index) => {
@@ -1207,13 +1197,10 @@ class App extends Component {
         });
       })
     })
-    this.setState(tempState, () => {
-      this.populateAndRemoveDuplicateHosts();
-    });
+    this.populateAndRemoveDuplicateHosts(tempState);
   }
 
-  populateAndRemoveDuplicateHosts() { // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
-    const tempState = _.cloneDeep(this.state);
+  populateAndRemoveDuplicateHosts(tempState) { // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
     let duplicateHostIndices = tempState.duplicateHostIndices;
     duplicateHostIndices.length = 0;
     let options = tempState.typeAheadOptions;
@@ -1233,14 +1220,12 @@ class App extends Component {
         });
       }
     }
-    this.setState(tempState, () => {
-      this.pullContentToRenderFromTypeAheadList();
-    });
+    this.pullContentToRenderFromTypeAheadList(tempState);
   }
 
   componentWillMount(){
     if (this.state.showByShow === true) {
-      this.alphabetizeShowList();
+      this.showByShow();
     }
     else {
     }
@@ -1273,6 +1258,12 @@ class App extends Component {
 export default App;
 
 /* TODO
+
+Pull content to render array runs twice either right after show by ;name is navigated away from or right before show by show is navigated to. As evidenced by 190 vs 194 undefined's in console log on the modalfacecard component
+Need to fix the modal face card running before pull content is run:
+
+maybe it's because the sort and populate typeahead options both set state twice and trigger a re-render before the contenttorender array is populated.
+
 -fix multiples like Jad Abumrad and Guy Raz and "various shows" error
 -fix error when backspacing host or show name
 -fix "expected to return a value in arrow function" errors
