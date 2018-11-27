@@ -176,7 +176,8 @@ class App extends Component {
     this.alphabetizeShowList = this.alphabetizeShowList.bind(this);
     this.pushShowsToTypeAheadList = this.pushShowsToTypeAheadList.bind(this);
     this.pullContentToRenderFromTypeAheadList = this.pullContentToRenderFromTypeAheadList.bind(this);
-    this.populateAndRemoveDuplicateHosts = this.populateAndRemoveDuplicateHosts.bind(this);
+    this.populateDuplicateHostIndices = this.populateDuplicateHostIndices.bind(this);
+    this.removeDuplicateHosts = this.removeDuplicateHosts.bind(this);
 
     this.state = {
       showByName: false,
@@ -1122,6 +1123,8 @@ class App extends Component {
 
   showByName() {
     const tempState = _.cloneDeep(this.state);
+    console.log(this.state);
+    console.log(tempState);
     tempState.showByName = true;
     tempState.showByShow = false;
     tempState.selected.length = 0;
@@ -1167,14 +1170,14 @@ class App extends Component {
   pushShowsToTypeAheadList(tempState) {
     tempState.typeAheadOptions.length = 0;
     tempState.resources.forEach((resource, index) => {
-        let resourceObject = Object.assign({}, resource)
+        let resourceObject = Object.assign({}, resource);
         tempState.typeAheadOptions.push(resourceObject);
       });
     this.pullContentToRenderFromTypeAheadList(tempState);
   }
 
   pullContentToRenderFromTypeAheadList(tempState) {
-    tempState.contentToRender = tempState.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
+    tempState.contentToRender = _.cloneDeep(tempState.typeAheadOptions); // separates out content that renders from list that TypeAhead pulls from
     this.setState(tempState);
   }
 
@@ -1197,10 +1200,10 @@ class App extends Component {
         });
       })
     })
-    this.populateAndRemoveDuplicateHosts(tempState);
+    this.populateDuplicateHostIndices(tempState);
   }
 
-  populateAndRemoveDuplicateHosts(tempState) { // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
+  populateDuplicateHostIndices(tempState) { // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
     let duplicateHostIndices = tempState.duplicateHostIndices;
     duplicateHostIndices.length = 0;
     let options = tempState.typeAheadOptions;
@@ -1212,13 +1215,19 @@ class App extends Component {
           duplicateHostIndices.push(i);
         }
       }
-      if (duplicateHostIndices.length > 0) {
-        duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
-        duplicateHostIndices.forEach((element) => {
-          tempState.typeAheadOptions[(element - 1)].hostshow = "Various Shows";
-          tempState.typeAheadOptions.splice(element, 1);
-        });
-      }
+    }
+    this.removeDuplicateHosts(tempState, duplicateHostIndices);
+  }
+
+  removeDuplicateHosts(tempState, duplicateHostIndices) {
+    if (duplicateHostIndices.length > 0) {
+      duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
+      duplicateHostIndices.forEach((element) => {
+        console.log()
+        const previousElement = (element - 1);
+        tempState.typeAheadOptions[(previousElement)].hostshow = "Various Shows";
+        tempState.typeAheadOptions.splice(element, 1);
+      });
     }
     this.pullContentToRenderFromTypeAheadList(tempState);
   }

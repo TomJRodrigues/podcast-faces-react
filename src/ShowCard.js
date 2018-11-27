@@ -50,6 +50,7 @@ export default class ShowCard extends Component {
                       lastName={host.lastName}
                       personurl={host.personurl}
                       hostshow={host.hostshow}
+                      globalState={this.props.globalState}
                     />
                   )
                 })
