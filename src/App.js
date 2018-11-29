@@ -174,6 +174,7 @@ class App extends Component {
     this.showByShow = this.showByShow.bind(this);
     this.handleChangeHelper = this.handleChangeHelper.bind(this);
     this.alphabetizeShowList = this.alphabetizeShowList.bind(this);
+    this.alphabetizeHostList = this.alphabetizeHostList.bind(this);
     this.pushShowsToTypeAheadList = this.pushShowsToTypeAheadList.bind(this);
     this.pullContentToRenderFromTypeAheadList = this.pullContentToRenderFromTypeAheadList.bind(this);
     this.populateDuplicateHostIndices = this.populateDuplicateHostIndices.bind(this);
@@ -1123,8 +1124,6 @@ class App extends Component {
 
   showByName() {
     const tempState = _.cloneDeep(this.state);
-    console.log(this.state);
-    console.log(tempState);
     tempState.showByName = true;
     tempState.showByShow = false;
     tempState.selected.length = 0;
@@ -1177,8 +1176,12 @@ class App extends Component {
   }
 
   pullContentToRenderFromTypeAheadList(tempState) {
-    tempState.contentToRender = _.cloneDeep(tempState.typeAheadOptions); // separates out content that renders from list that TypeAhead pulls from
-    this.setState(tempState);
+    tempState.contentToRender = tempState.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
+    this.setState({typeAheadOptions: tempState.typeAheadOptions});
+    this.setState({contentToRender: tempState.typeAheadOptions});
+    this.setState({showByShow: tempState.showByShow});
+    this.setState({showByName: tempState.showByName});
+    this.setState({selected: tempState.selected});
   }
 
   alphabetizeHostList(tempState) { // sorting state so that results are alphabetical
@@ -1223,9 +1226,7 @@ class App extends Component {
     if (duplicateHostIndices.length > 0) {
       duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
       duplicateHostIndices.forEach((element) => {
-        console.log()
-        const previousElement = (element - 1);
-        tempState.typeAheadOptions[(previousElement)].hostshow = "Various Shows";
+        tempState.typeAheadOptions[(element - 1)].hostshow = "Various Shows";
         tempState.typeAheadOptions.splice(element, 1);
       });
     }
@@ -1241,7 +1242,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className="container container-small">
         <Header />
@@ -1267,6 +1267,7 @@ class App extends Component {
 export default App;
 
 /* TODO
+-- check === betweeen tempstate after forEach push() just between the hostshow, not the whole object
 -fix mobile view and the flex width
 -fix multiples like Jad Abumrad and Guy Raz and "various shows" error
 -Add ESLint
