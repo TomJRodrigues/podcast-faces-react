@@ -39,16 +39,18 @@ export default class ShowCard extends Component {
           </Modal.Header>
           <Modal.Body>
             <div className="modalFaceCardContent row">
-              {  // iterates over the host array and requests an image and name for each
-                this.props.resource.hosts.map((host, index) => {
+              {  
+                this.props.resource.hosts.map((host, index) => { // iterates over the host array and requests an image and name for each
                   return (
                     <ModalFaceCard
+                      key={index}
                       index={index}
                       host={host}
                       firstName={host.firstName}
                       lastName={host.lastName}
                       personurl={host.personurl}
-                      show={host.show}
+                      hostshow={host.hostshow}
+                      globalState={this.props.globalState}
                     />
                   )
                 })

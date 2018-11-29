@@ -5,6 +5,7 @@ import Footer from './Footer.js';
 import SortButtons from './SortButtons.js';
 import Content from './Content.js';
 import TypeAheadContainer from './TypeAheadContainer.js';
+import _ from 'lodash';
 
 // host images
 import AilsaChang from './img/ailsa-chang-planet-money.jpg';
@@ -173,9 +174,11 @@ class App extends Component {
     this.showByShow = this.showByShow.bind(this);
     this.handleChangeHelper = this.handleChangeHelper.bind(this);
     this.alphabetizeShowList = this.alphabetizeShowList.bind(this);
+    this.alphabetizeHostList = this.alphabetizeHostList.bind(this);
     this.pushShowsToTypeAheadList = this.pushShowsToTypeAheadList.bind(this);
-    this.createAndDisplayContentToRender = this.createAndDisplayContentToRender.bind(this);
-    this.removeHostDuplicates = this.removeHostDuplicates.bind(this);
+    this.pullContentToRenderFromTypeAheadList = this.pullContentToRenderFromTypeAheadList.bind(this);
+    this.populateDuplicateHostIndices = this.populateDuplicateHostIndices.bind(this);
+    this.removeDuplicateHosts = this.removeDuplicateHosts.bind(this);
 
     this.state = {
       showByName: false,
@@ -189,31 +192,31 @@ class App extends Component {
               firstName: "Ailsa",
               lastName: "Chang",
               personurl: AilsaChang,
-              show: "Planet Money"
+              hostshow: "Planet Money"
             },
             {
               firstName: "Jacob",
               lastName: "Goldstein",
               personurl: JacobGoldsten,
-              show: "Planet Money"
+              hostshow: "Planet Money"
             },
             {
               firstName: "Kenny",
               lastName: "Malone",
               personurl: KennyMalone,
-              show: "Planet Money"
+              hostshow: "Planet Money"
             },
             {
               firstName: "Noel",
               lastName: "King",
               personurl: NoelKing,
-              show: "Planet Money"
+              hostshow: "Planet Money"
             },
             {
               firstName: "Robert",
               lastName: "Smith",
               personurl: RobertSmith,
-              show: "Planet Money"
+              hostshow: "Planet Money"
             }
           ]
         },
@@ -225,13 +228,13 @@ class App extends Component {
               firstName: "Alex",
               lastName: "Goldman",
               personurl: AlexGoldman,
-              show: "Reply All"
+              hostshow: "Reply All"
             },
             {
               firstName: "PJ",
               lastName: "Vogt",
               personurl: PJVogt,
-              show: "Reply All"
+              hostshow: "Reply All"
             }
           ]
         },
@@ -243,7 +246,7 @@ class App extends Component {
               firstName: "Ashley",
               lastName: "Saupe",
               personurl: AshleySaupe,
-              show: "The Sharp End"
+              hostshow: "The Sharp End"
             }
           ]
         },
@@ -255,55 +258,55 @@ class App extends Component {
               firstName: "Augustus",
               lastName: "Yuan",
               personurl: AugustusYuan,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             },
             {
               firstName: "Brian",
               lastName: "Holt",
               personurl: BrianHolt,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             },
             {
               firstName: "Derrick",
               lastName: "Showers",
               personurl: DerrickShowers,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             },
             {
               firstName: "Jem",
               lastName: "Young",
               personurl: JemYoung,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             },
             {
               firstName: "Mars",
               lastName: "Jullian",
               personurl: MarsJulian,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             },
             {
               firstName: "Ryan",
               lastName: "Anklem",
               personurl: RyanAnklem,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             },
             {
               firstName: "Ryan",
               lastName: "Burgess",
               personurl: RyanBurgess,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             },
             {
               firstName: "Sarah",
               lastName: "Federman",
               personurl: SarahFederman,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             },
             {
               firstName: "Stacy",
               lastName: "London",
               personurl: StacyLondon,
-              show: "Front End Happy Hour"
+              hostshow: "Front End Happy Hour"
             }
           ]
         },
@@ -315,7 +318,7 @@ class App extends Component {
               firstName: "Chris",
               lastName: "Hardwick",
               personurl: ChrisHardwick,
-              show: "The Nerdist"
+              hostshow: "The Nerdist"
             }
           ]
         },
@@ -327,19 +330,19 @@ class App extends Component {
               firstName: "Becca",
               lastName: "Cahall",
               personurl: BeccaCahall,
-              show: "The Dirtbag Diaries"
+              hostshow: "The Dirtbag Diaries"
             },
             {
               firstName: "Fitz",
               lastName: "Cahall",
               personurl: FitzCahall,
-              show: "The Dirtbag Diaries"
+              hostshow: "The Dirtbag Diaries"
             },
             {
               firstName: "Jen",
               lastName: "Altschul",
               personurl: JenAltschul,
-              show: "The Dirtbag Diaries"
+              hostshow: "The Dirtbag Diaries"
             }
           ]
         },
@@ -351,7 +354,7 @@ class App extends Component {
               firstName: "Chris",
               lastName: "Kalous",
               personurl: ChrisKalous,
-              show: "The Enormocast"
+              hostshow: "The Enormocast"
             }
           ]
         },
@@ -363,13 +366,13 @@ class App extends Component {
               firstName: "Chuck",
               lastName: "Bryant",
               personurl: ChuckBryant,
-              show: "Stuff You Should Know"
+              hostshow: "Stuff You Should Know"
             },
             {
               firstName: "Josh",
               lastName: "Clark",
               personurl: JoshClark,
-              show: "Stuff You Should Know"
+              hostshow: "Stuff You Should Know"
             }
           ]
         },
@@ -381,7 +384,7 @@ class App extends Component {
               firstName: "Guy",
               lastName: "Raz",
               personurl: GuyRaz,
-              show: "TED Radio Hour"
+              hostshow: "TED Radio Hour"
             }
           ]
         },
@@ -393,7 +396,7 @@ class App extends Component {
               firstName: "Hrishkesh",
               lastName: "Hirway",
               personurl: HrishkeshHirway,
-              show: "Song Exploder"
+              hostshow: "Song Exploder"
             }
           ]
         },
@@ -405,7 +408,7 @@ class App extends Component {
               firstName: "Ira",
               lastName: "Glass",
               personurl: IraGlass,
-              show: "This American Life"
+              hostshow: "This American Life"
             }
           ]
         },
@@ -417,13 +420,13 @@ class App extends Component {
               firstName: "Jad",
               lastName: "Abumrad",
               personurl: JadAbumrad,
-              show: "Radiolab"
+              hostshow: "Radiolab"
             },
             {
               firstName: "Robert",
               lastName: "Krulwich",
               personurl: RobertKrulwich,
-              show: "Radiolab"
+              hostshow: "Radiolab"
             }
           ]
         },
@@ -435,13 +438,13 @@ class App extends Component {
               firstName: "Jessica",
               lastName: "Williams",
               personurl: JessicaWilliams,
-              show: "2 Dope Queens"
+              hostshow: "2 Dope Queens"
             },
             {
               firstName: "Phoebe",
               lastName: "Robinson",
               personurl: PhoebeRobinson,
-              show: "2 Dope Queens"
+              hostshow: "2 Dope Queens"
             }
           ]
         },
@@ -453,7 +456,7 @@ class App extends Component {
               firstName: "Joe",
               lastName: "Rogan",
               personurl: JoeRogan,
-              show: "Joe Rogan Experience"
+              hostshow: "Joe Rogan Experience"
             }
           ]
         },
@@ -465,7 +468,7 @@ class App extends Component {
               firstName: "Roman",
               lastName: "Mars",
               personurl: RomanMars,
-              show: "99 Percent Invisible"
+              hostshow: "99 Percent Invisible"
             }
           ]
         },
@@ -477,7 +480,7 @@ class App extends Component {
               firstName: "Sarah",
               lastName: "Koenig",
               personurl: SarahKoenig,
-              show: "Serial"
+              hostshow: "Serial"
             }
           ]
         },
@@ -489,7 +492,7 @@ class App extends Component {
               firstName: "Stacey",
               lastName: "Vanek-Smith",
               personurl: StaceyVanekSmith,
-              show: "The Indicator"
+              hostshow: "The Indicator"
             }
           ]
         },
@@ -501,7 +504,7 @@ class App extends Component {
               firstName: "Stephen J",
               lastName: "Dubner",
               personurl: StephenJDubner,
-              show: "Freakanomics"
+              hostshow: "Freakanomics"
             }
           ]
         },
@@ -513,7 +516,7 @@ class App extends Component {
               firstName: "Wendy",
               lastName: "Zukerman",
               personurl: WendyZukerman,
-              show: "Science Vs"
+              hostshow: "Science Vs"
             }
           ]
         },
@@ -525,7 +528,7 @@ class App extends Component {
               firstName: "Lindsay",
               lastName: "Graham",
               personurl: LindsayGraham,
-              show: "American Scandal"
+              hostshow: "American Scandal"
             }
           ]
         },
@@ -537,31 +540,31 @@ class App extends Component {
               firstName: "Amber",
               lastName: "A'Lee Frost",
               personurl: AmberALeeFrost,
-              show: "Chapo Trap House"
+              hostshow: "Chapo Trap House"
             },
             {
               firstName: "Felix",
               lastName: "Biederman",
               personurl: FelixBiederman,
-              show: "Chapo Trap House"
+              hostshow: "Chapo Trap House"
             },
             {
               firstName: "Matt",
               lastName: "Christman",
               personurl: MattChristman,
-              show: "Chapo Trap House"
+              hostshow: "Chapo Trap House"
             },
             {
               firstName: "Virgil",
               lastName: "Texas",
               personurl: VirgilTexas,
-              show: "Chapo Trap House"
+              hostshow: "Chapo Trap House"
             },
             {
               firstName: "Will",
               lastName: "Menaker",
               personurl: WillMenaker,
-              show: "Chapo Trap House"
+              hostshow: "Chapo Trap House"
             }
           ]
         },
@@ -573,7 +576,7 @@ class App extends Component {
               firstName: "Conan",
               lastName: "O'Brien",
               personurl: ConanOBrien,
-              show: "Conan O'Brien Needs a Friend"
+              hostshow: "Conan O'Brien Needs a Friend"
             }
           ]
         },
@@ -585,7 +588,7 @@ class App extends Component {
               firstName: "Dan",
               lastName: "Carlin",
               personurl: DanCarlin,
-              show: "Dan Carlin's Hardcore History"
+              hostshow: "Dan Carlin's Hardcore History"
             }
           ]
         },
@@ -597,7 +600,7 @@ class App extends Component {
               firstName: "Laura",
               lastName: "Beil",
               personurl: LauraBeil,
-              show: "Dr. Death"
+              hostshow: "Dr. Death"
             }
           ]
         },
@@ -609,13 +612,13 @@ class App extends Component {
               firstName: "Earlonne",
               lastName: "Woods",
               personurl: EarlonneWoods,
-              show: "Ear Hustle"
+              hostshow: "Ear Hustle"
             },
             {
               firstName: "Nigel",
               lastName: "Poor",
               personurl: NigelPoor,
-              show: "Ear Hustle"
+              hostshow: "Ear Hustle"
             }
           ]
         },
@@ -627,13 +630,13 @@ class App extends Component {
               firstName: "Jody",
               lastName: "Avirgan",
               personurl: JodyAvirgan,
-              show: "FiveThirtyEight Politics"
+              hostshow: "FiveThirtyEight Politics"
             },
             {
               firstName: "Nate",
               lastName: "Silver",
               personurl: NateSilver,
-              show: "FiveThirtyEight Politics"
+              hostshow: "FiveThirtyEight Politics"
             }
           ]
         },
@@ -645,7 +648,7 @@ class App extends Component {
               firstName: "Terry",
               lastName: "Gross",
               personurl: TerryGross,
-              show: "Fresh Air"
+              hostshow: "Fresh Air"
             }
           ]
         },
@@ -657,13 +660,13 @@ class App extends Component {
               firstName: "Corinne",
               lastName: "Fisher",
               personurl: CorinneFisher,
-              show: "Guys We Fucked"
+              hostshow: "Guys We Fucked"
             },
             {
               firstName: "Krystyna",
               lastName: "Hutchinson",
               personurl: KrystynaHutchinson,
-              show: "Guys We Fucked"
+              hostshow: "Guys We Fucked"
             }
           ]
         },
@@ -675,7 +678,7 @@ class App extends Component {
               firstName: "Jonathan",
               lastName: "Goldstein",
               personurl: JonathanGoldstein,
-              show: "Heavyweight"
+              hostshow: "Heavyweight"
             }
           ]
         },
@@ -687,7 +690,7 @@ class App extends Component {
               firstName: "Shankar",
               lastName: "Vedantim",
               personurl: ShankarVedantam,
-              show: "Hidden Brain"
+              hostshow: "Hidden Brain"
             }
           ]
         },
@@ -699,7 +702,7 @@ class App extends Component {
               firstName: "Guy",
               lastName: "Raz",
               personurl: GuyRaz,
-              show: "How I Built This"
+              hostshow: "How I Built This"
             }
           ]
         },
@@ -711,19 +714,19 @@ class App extends Component {
               firstName: "Alix",
               lastName: "Spiegel",
               personurl: AlixSpiegel,
-              show: "Invisibilia"
+              hostshow: "Invisibilia"
             },
             {
               firstName: "Hanna",
               lastName: "Rosin",
               personurl: HannaRosin,
-              show: "Invisibilia"
+              hostshow: "Invisibilia"
             },
             {
               firstName: "Lulu",
               lastName: "Miller",
               personurl: LuluMiller,
-              show: "Invisibilia"
+              hostshow: "Invisibilia"
             }
           ]
         },
@@ -735,7 +738,7 @@ class App extends Component {
               firstName: "Aaron",
               lastName: "Mahnke",
               personurl: AaronMahnke,
-              show: "Lore"
+              hostshow: "Lore"
             }
           ]
         },
@@ -747,7 +750,7 @@ class App extends Component {
               firstName: "Nick",
               lastName: "Van Der Kolk",
               personurl: NickVanDerKolk,
-              show: "Love and Radio"
+              hostshow: "Love and Radio"
             }
           ]
         },
@@ -759,19 +762,19 @@ class App extends Component {
               firstName: "Griffin",
               lastName: "McElroy",
               personurl: GriffinMcelroy,
-              show: "My Brother and My Brother and Me"
+              hostshow: "My Brother and My Brother and Me"
             },
             {
               firstName: "Justin",
               lastName: "McElroy",
               personurl: JustinMcelroy,
-              show: "My Brother and My Brother and Me"
+              hostshow: "My Brother and My Brother and Me"
             },
             {
               firstName: "Travis",
               lastName: "McElroy",
               personurl: TravisMcelroy,
-              show: "My Brother and My Brother and Me"
+              hostshow: "My Brother and My Brother and Me"
             }
           ]
         },
@@ -783,19 +786,19 @@ class App extends Component {
               firstName: "Alice",
               lastName: "Levine",
               personurl: AliceLevine,
-              show: "My Dad Wrote a Porno"
+              hostshow: "My Dad Wrote a Porno"
             },
             {
               firstName: "James",
               lastName: "Cooper",
               personurl: JamesCooper,
-              show: "My Dad Wrote a Porno"
+              hostshow: "My Dad Wrote a Porno"
             },
             {
               firstName: "Jamie",
               lastName: "Morton",
               personurl: JamieMorton,
-              show: "My Dad Wrote a Porno"
+              hostshow: "My Dad Wrote a Porno"
             }
           ]
         },
@@ -807,13 +810,13 @@ class App extends Component {
               firstName: "Georgia",
               lastName: "Hardstark",
               personurl: GeorgiaHardstark,
-              show: "My Favorite Murder"
+              hostshow: "My Favorite Murder"
             },
             {
               firstName: "Karen",
               lastName: "Kilgariff",
               personurl: KarenKilgariff,
-              show: "My Favorite Murder"
+              hostshow: "My Favorite Murder"
             }
           ]
         },
@@ -825,25 +828,25 @@ class App extends Component {
               firstName: "Dan",
               lastName: "Pfeiffer",
               personurl: DanPfeiffer,
-              show: "Pod Save America"
+              hostshow: "Pod Save America"
             },
             {
               firstName: "Jon",
               lastName: "Favreau",
               personurl: JonFavreau,
-              show: "Pod Save America"
+              hostshow: "Pod Save America"
             },
             {
               firstName: "Jon",
               lastName: "Lovett",
               personurl: JonLovett,
-              show: "Pod Save America"
+              hostshow: "Pod Save America"
             },
             {
               firstName: "Tommy",
               lastName: "Vietor",
               personurl: TommyVietor,
-              show: "Pod Save America"
+              hostshow: "Pod Save America"
             }
           ]
         },
@@ -855,7 +858,7 @@ class App extends Component {
               firstName: "Linda",
               lastName: "Holmes",
               personurl: LindaHolmes,
-              show: "Pop Culture Happy Hour"
+              hostshow: "Pop Culture Happy Hour"
             }
           ]
         },
@@ -867,7 +870,7 @@ class App extends Component {
               firstName: "Rachel",
               lastName: "Maddow",
               personurl: RachelMaddow,
-              show: "The Rachel Maddow Show"
+              hostshow: "The Rachel Maddow Show"
             }
           ]
         },
@@ -879,7 +882,7 @@ class App extends Component {
               firstName: "Jad",
               lastName: "Abumrad",
               personurl: JadAbumrad,
-              show: "Radiolab Presents: More Perfect"
+              hostshow: "Radiolab Presents: More Perfect"
             }
           ]
         },
@@ -891,7 +894,7 @@ class App extends Component {
               firstName: "Malcolm",
               lastName: "Gladwell",
               personurl: MalcolmGladwell,
-              show: "Revisionist History"
+              hostshow: "Revisionist History"
             }
           ]
         },
@@ -903,7 +906,7 @@ class App extends Component {
               firstName: "Brian",
               lastName: "Reed",
               personurl: BrianReed,
-              show: "S-Town"
+              hostshow: "S-Town"
             }
           ]
         },
@@ -915,7 +918,7 @@ class App extends Component {
               firstName: "Dan",
               lastName: "Savage",
               personurl: DanSavage,
-              show: "Savage Lovecast"
+              hostshow: "Savage Lovecast"
             }
           ]
         },
@@ -927,7 +930,7 @@ class App extends Component {
               firstName: "Drew",
               lastName: "Ackerman",
               personurl: DrewAckerman,
-              show: "Sleep With Me"
+              hostshow: "Sleep With Me"
             }
           ]
         },
@@ -939,7 +942,7 @@ class App extends Component {
               firstName: "Glynn",
               lastName: "Washington",
               personurl: GlynnWashington,
-              show: "Snap Judgement"
+              hostshow: "Snap Judgement"
             }
           ]
         },
@@ -951,7 +954,7 @@ class App extends Component {
               firstName: "Neil",
               lastName: "Degrasse Tyson",
               personurl: NeilDegrasseTyson,
-              show: "Startalk Radio"
+              hostshow: "Startalk Radio"
             }
           ]
         },
@@ -963,13 +966,13 @@ class App extends Component {
               firstName: "Holly",
               lastName: "Frey",
               personurl: HollyFrey,
-              show: "Stuff You Missed In History Class"
+              hostshow: "Stuff You Missed In History Class"
             },
             {
               firstName: "Tracy",
               lastName: "V. Wilson",
               personurl: TracyVWilson,
-              show: "Stuff You Missed In History Class"
+              hostshow: "Stuff You Missed In History Class"
             }
           ]
         },
@@ -981,7 +984,7 @@ class App extends Component {
               firstName: "Mike",
               lastName: "Boudet",
               personurl: MikeBoudet,
-              show: "Sword and Scale"
+              hostshow: "Sword and Scale"
             }
           ]
         },
@@ -993,7 +996,7 @@ class App extends Component {
               firstName: "Ben",
               lastName: "Shapiro",
               personurl: BenShapiro,
-              show: "The Ben Shapiro Show"
+              hostshow: "The Ben Shapiro Show"
             }
           ]
         },
@@ -1005,7 +1008,7 @@ class App extends Component {
               firstName: "Michael",
               lastName: "Barbaro",
               personurl: MichaelBarbaro,
-              show: "The Daily"
+              hostshow: "The Daily"
             }
           ]
         },
@@ -1017,7 +1020,7 @@ class App extends Component {
               firstName: "Ezra",
               lastName: "Klein",
               personurl: EzraKlein,
-              show: "The Ezra Klein Show"
+              hostshow: "The Ezra Klein Show"
             }
           ]
         },
@@ -1029,19 +1032,19 @@ class App extends Component {
               firstName: "Ben",
               lastName: "Kissel",
               personurl: BenKissel,
-              show: "The Last Podcast on the Left"
+              hostshow: "The Last Podcast on the Left"
             },
             {
               firstName: "Henry",
               lastName: "Zebrowski",
               personurl: HenryZebrowski,
-              show: "The Last Podcast on the Left"
+              hostshow: "The Last Podcast on the Left"
             },
             {
               firstName: "Marcus",
               lastName: "Parks",
               personurl: MarcusParks,
-              show: "The Last Podcast on the Left"
+              hostshow: "The Last Podcast on the Left"
             }
           ]
         },
@@ -1053,7 +1056,7 @@ class App extends Component {
               firstName: "George",
               lastName: "Dawes",
               personurl: GeorgeDawes,
-              show: "The Moth"
+              hostshow: "The Moth"
             }
           ]
         },
@@ -1065,7 +1068,7 @@ class App extends Component {
               firstName: "Tim",
               lastName: "Ferriss",
               personurl: TimFerriss,
-              show: "The Tim Ferriss Show"
+              hostshow: "The Tim Ferriss Show"
             }
           ]
         },
@@ -1077,13 +1080,13 @@ class App extends Component {
               firstName: "Captain",
               lastName: "",
               personurl: Captain,
-              show: "True Crime Garage"
+              hostshow: "True Crime Garage"
             },
             {
               firstName: "Nic",
               lastName: "",
               personurl: Nic,
-              show: "True Crime Garage"
+              hostshow: "True Crime Garage"
             }
           ]
         },
@@ -1095,7 +1098,7 @@ class App extends Component {
               firstName: "Peter",
               lastName: "Sagal",
               personurl: PeterSagal,
-              show: "Wait Wait Don't Tell Me"
+              hostshow: "Wait Wait Don't Tell Me"
             }
           ]
         },
@@ -1107,84 +1110,84 @@ class App extends Component {
               firstName: "Marc",
               lastName: "Maron",
               personurl: MarcMaron,
-              show: "WTF with Marc Maron"
+              hostshow: "WTF with Marc Maron"
             }
           ]
         }
       ],
       contentToRender: [],
       typeAheadOptions: [],
-      selected: []
+      selected: [],
+      duplicateHostIndices: []
     }
   }
 
-  resetTypeAheadOptions(tempState) {
-    tempState.typeAheadOptions.length = 0;
-  }
-
-  showByName(host) {
-    const tempState = this.state;
+  showByName() {
+    const tempState = _.cloneDeep(this.state);
     tempState.showByName = true;
     tempState.showByShow = false;
-    tempState.selected = [];
-    tempState.typeAheadOptions.length = 0;
-    this.setState(tempState);
+    tempState.selected.length = 0;
+    this.alphabetizeHostList(tempState);
   }
 
-  showByShow(show) {
-    const tempState = this.state;
+  showByShow() {
+    const tempState = _.cloneDeep(this.state);
     tempState.showByName = false;
     tempState.showByShow = true;
-    tempState.selected = [];
-    tempState.typeAheadOptions.length = 0;
-    this.setState(tempState);
+    tempState.selected.length = 0;
+    this.alphabetizeShowList(tempState);
   }
 
   handleChangeHelper(selected) {
-    const tempState = this.state;
-    tempState.contentToRender.length = 0;
-    tempState.contentToRender = selected;
+    const tempState = _.cloneDeep(this.state);
     tempState.selected = selected;
+    tempState.contentToRender = selected;
+    if (tempState.selected.length > 0) {
+      tempState.contentToRender = tempState.selected; // shows just a single show/host when form is selected
+    }
+    else {
+      tempState.contentToRender = tempState.typeAheadOptions;  // shows all options when form is not selected
+    }
     this.setState(tempState);
   }
 
-  alphabetizeShowList() { // sorting state so that results are alphabetical
-    const tempState = this.state;
+  alphabetizeShowList(tempState) { // sorting state so that results are alphabetical
     tempState.resources.sort(function(a, b) {
-      var nameA = a.show.toUpperCase(); // ignore upper and lowercase
-      var nameB = b.show.toUpperCase(); // ignore upper and lowercase
+      let nameA = a.show.toUpperCase(); // ignore upper and lowercase
+      let nameB = b.show.toUpperCase(); // ignore upper and lowercase
       if (nameA < nameB) {
         return -1;
       }
       if (nameA > nameB) {
         return 1;
       }
-      // names must be equal
-      return 0;
+      return 0; // names must be equa
     } );
+    this.pushShowsToTypeAheadList(tempState);
   }
 
-  pushShowsToTypeAheadList() {
-    const tempState = this.state;
-    this.state.typeAheadOptions.length = 0;
-    tempState.resources.map((resource, index) => {
-        var resourceObject = Object.assign({}, resource)
-        this.state.typeAheadOptions.push(resourceObject);
-      });
-  }
-
-  createAndDisplayContentToRender() {
-    this.state.contentToRender = this.state.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
-    if (this.state.selected.length > 0) {
-      this.state.contentToRender = this.state.selected; // shows just a single show/host when form is selected
-    }
-  }
-
-  alphabetizeHostList() { // sorting state so that results are alphabetical
-    const tempState = this.state;
+  pushShowsToTypeAheadList(tempState) {
     tempState.typeAheadOptions.length = 0;
-    tempState.resources.map((resource, index) => {
-      resource.hosts.map((host, index) => {
+    tempState.resources.forEach((resource, index) => {
+        let resourceObject = Object.assign({}, resource);
+        tempState.typeAheadOptions.push(resourceObject);
+      });
+    this.pullContentToRenderFromTypeAheadList(tempState);
+  }
+
+  pullContentToRenderFromTypeAheadList(tempState) {
+    tempState.contentToRender = tempState.typeAheadOptions; // separates out content that renders from list that TypeAhead pulls from
+    this.setState({typeAheadOptions: tempState.typeAheadOptions});
+    this.setState({contentToRender: tempState.typeAheadOptions});
+    this.setState({showByShow: tempState.showByShow});
+    this.setState({showByName: tempState.showByName});
+    this.setState({selected: tempState.selected});
+  }
+
+  alphabetizeHostList(tempState) { // sorting state so that results are alphabetical
+    tempState.typeAheadOptions.length = 0;  // clear typeAhead options
+    tempState.resources.forEach((resource, index) => {
+      resource.hosts.forEach((host, index) => {
         tempState.typeAheadOptions.push(host);
         tempState.typeAheadOptions.sort(function(a, b) {  // sorting function
           var nameA = a.firstName.toUpperCase(); // ignore upper and lowercase
@@ -1200,44 +1203,45 @@ class App extends Component {
         });
       })
     })
+    this.populateDuplicateHostIndices(tempState);
   }
 
-  removeHostDuplicates() {
-    // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
-    let duplicateHostIndices = [];  // holder for duplicate host index
-    let i = 1;
-    let options = this.state.typeAheadOptions;
+  populateDuplicateHostIndices(tempState) { // removes duplicates by first and last name for instances like Guy Raz and Jad Abumrad
+    let duplicateHostIndices = tempState.duplicateHostIndices;
+    duplicateHostIndices.length = 0;
+    let options = tempState.typeAheadOptions;
     let length = options.length;
-    if (length > 1) {
+    let i = 1;
+    if (length > 1 && tempState.showByName === true) {
       for (i; i < length; i++) {  // iterates over the hosts and finds duplicates by first and last name
         if ((options[i - 1].firstName === options[i].firstName) && (options[i - 1].lastName === options[i].lastName)) {
           duplicateHostIndices.push(i);
         }
       }
-      if (duplicateHostIndices.length > 0) {
-        duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
-        duplicateHostIndices.map((element) => {
-          options[element - 1].show = "Various Shows";
-          options.splice(element, 1);
-        });
-      }
+    }
+    this.removeDuplicateHosts(tempState, duplicateHostIndices);
+  }
+
+  removeDuplicateHosts(tempState, duplicateHostIndices) {
+    if (duplicateHostIndices.length > 0) {
+      duplicateHostIndices.sort().reverse();  // if we didn't sort and reverse, we would remove the 1st host and the index of the rest would be off and we would remove them
+      duplicateHostIndices.forEach((element) => {
+        tempState.typeAheadOptions[(element - 1)].hostshow = "Various Shows";
+        tempState.typeAheadOptions.splice(element, 1);
+      });
+    }
+    this.pullContentToRenderFromTypeAheadList(tempState);
+  }
+
+  componentWillMount(){
+    if (this.state.showByShow === true) {
+      this.showByShow();
+    }
+    else {
     }
   }
 
   render() {
-    if (this.state.showByShow === true) {  // sorts by show name alphabetically
-      {this.alphabetizeShowList()};
-      {this.pushShowsToTypeAheadList()};
-      {this.createAndDisplayContentToRender()};
-    }
-
-    if ((this.state.showByName === true)) {
-      {this.alphabetizeHostList()};
-      {this.removeHostDuplicates()};
-      {this.createAndDisplayContentToRender()};
-    }
-    else {}  // no sorting
-
     return (
       <div className="container container-small">
         <Header />
@@ -1253,8 +1257,6 @@ class App extends Component {
         
         <Content
           state={this.state}
-          showByName={this.showByName}
-          showByShow={this.showByShow}
         />
         <Footer />
       </div>
@@ -1265,9 +1267,9 @@ class App extends Component {
 export default App;
 
 /* TODO
+-- check === betweeen tempstate after forEach push() just between the hostshow, not the whole object
+-fix mobile view and the flex width
 -fix multiples like Jad Abumrad and Guy Raz and "various shows" error
--fix mutate state directly errors
 -Add ESLint
 -Add Prettier
--Fix React map key warning on console
 */

@@ -20,6 +20,7 @@ export default class Content extends Component {
             this.props.state.contentToRender.map((show, index) => {
             return(
                 <ShowCard
+                  key={index}
                   index={index}
                   show={show.show}
                   showurl={show.showurl}
@@ -40,12 +41,13 @@ export default class Content extends Component {
           this.props.state.contentToRender.map((host, index) => {
             return (
               <FaceCard
+                key={index}
                 index={index}
                 host={host}
                 firstName={host.firstName}
                 lastName={host.lastName}
                 personurl={host.personurl}
-                show={host.show}
+                hostshow={host.hostshow}
                 globalState={this.props.state}
               />
             )
