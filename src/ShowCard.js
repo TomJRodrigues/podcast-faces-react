@@ -28,7 +28,7 @@ export default class ShowCard extends Component {
 
 	render() {
 		return(
-			<div className="col-md-3">
+			<div className="col-md-3 flex-basis-255">
 				<div className="showCardHolder" onClick={this.handleShow}>
           <img src={this.props.showurl}></img>
   				<h5>{this.props.show}</h5>

@@ -69,6 +69,14 @@ opacity:0.8;
   justify-content:space-evenly;
 }
 
+.flex-basis-255{
+  flex-basis:255px;
+}
+
+.flex-basis-252{
+  flex-basis:252px;
+}
+
 div.modalFaceCardContent.row::after {
   content: none !important; /* fixes bug where last element would not center correctly */
 }
@@ -78,7 +86,7 @@ div.modalFaceCardContent.row::before {
 }
 
 .typeahead-container{
-  width:400px;
+  width:370px;
   margin:10px auto 20px;
 }
 
