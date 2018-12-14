@@ -5,11 +5,7 @@ import ShowCard from './ShowCard.js';
 export default class Content extends Component {
 	constructor(props) {
 		super(props)
-
-		// function binding
 	}
-
-	// event handlers
 
 	render() {
     // rendering when user clicks to sort by Show
@@ -21,7 +17,6 @@ export default class Content extends Component {
             return(
                 <ShowCard
                   key={index}
-                  index={index}
                   show={show.show}
                   showurl={show.showurl}
                   resource={show}
@@ -42,7 +37,6 @@ export default class Content extends Component {
             return (
               <FaceCard
                 key={index}
-                index={index}
                 host={host}
                 firstName={host.firstName}
                 lastName={host.lastName}

@@ -44,7 +44,6 @@ export default class ShowCard extends Component {
                   return (
                     <ModalFaceCard
                       key={index}
-                      index={index}
                       host={host}
                       firstName={host.firstName}
                       lastName={host.lastName}

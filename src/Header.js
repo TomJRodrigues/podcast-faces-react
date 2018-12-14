@@ -5,8 +5,6 @@ export default class Header extends Component {
 		super(props)
 	}
 
-	// event handlers
-
 	render() {
 		let title = "Podcast Faces"
 		return(

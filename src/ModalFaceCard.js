@@ -4,10 +4,7 @@ export default class ModalFaceCard extends Component {
 	constructor(props) {
 		super(props)
 
-		// function binding
 	}
-
-	// event handlers
 
 	render() {
 		return (

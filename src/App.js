@@ -1267,9 +1267,6 @@ class App extends Component {
 export default App;
 
 /* TODO
--- check === betweeen tempstate after forEach push() just between the hostshow, not the whole object
 -fix mobile view and the flex width
--fix multiples like Jad Abumrad and Guy Raz and "various shows" error
--Add ESLint
--Add Prettier
+-add testing
 */
